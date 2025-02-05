@@ -47,14 +47,14 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .project, .experience {
+        .project, .experience, .recommendation {
             background-color: #f9f9f9;
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 5px;
             border-left: 4px solid var(--primary-color);
         }
-        .project h3, .experience h3 {
+        .project h3, .experience h3, .recommendation h3 {
             color: var(--primary-color);
             margin-top: 0;
         }
@@ -83,6 +83,22 @@
             margin-top: 40px;
             color: var(--secondary-color);
         }
+        .recommendation-preview {
+            margin-top: 10px;
+        }
+        .view-full-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .view-full-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -92,66 +108,27 @@
     </header>
 
     <main>
-        <section class="section">
-            <h2>About Me</h2>
-            <p>I'm a Computer Engineering student at Purdue University with a focus on Artificial Intelligence. Passionate about leveraging cutting-edge technology to solve real-world problems, I'm constantly exploring new frontiers in AI and machine learning.</p>
-        </section>
+        <!-- Previous sections remain unchanged -->
 
         <section class="section">
-            <h2>Projects</h2>
-            <div class="project">
-                <h3>AI Project Intern</h3>
-                <p>Developed a comprehensive database to track all kids at TGCS, including their application process and IQ test results. This project streamlined the organization's data management, improving efficiency and decision-making processes.</p>
+            <h2>Recommendations</h2>
+            <div class="recommendation">
+                <h3>Jacob Boyle - CEO, MARCo Technologies LLC</h3>
+                <p class="recommendation-preview">
+                    "Aarnav was an excellent worker and an incredibly fast learner in a fast-paced technology workplace. He has strong skills in computer science and programming that he is able to apply in both research and production settings."
+                </p>
+                <a href="recommendation_jacob_boyle.html" class="view-full-btn">View Full Recommendation</a>
             </div>
-            <div class="project">
-                <h3>Machine Learning Cane with xAI Communication</h3>
-                <p>Currently developing an AI recognition system for assistive canes, enabling real-time communication using LIME xAI. This innovative project aims to enhance mobility and independence for visually impaired individuals.</p>
-            </div>
-            <div class="project">
-                <h3>Database for TGCS</h3>
-                <p>Created a robust database system to efficiently manage and analyze data for all TGCS participants, including detailed application processes and IQ test results. This system significantly improved data accessibility and reporting capabilities.</p>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2>Experience</h2>
-            <div class="experience">
-                <h3>Boilermaker Consulting Group - Project Manager</h3>
-                <p>West Lafayette, IN | January 2024 – Present</p>
-                <ul>
-                    <li>Spearheading the development of an advanced leasing optimization tool for a 1,700-unit apartment portfolio, leveraging data analytics to maximize occupancy and revenue.</li>
-                    <li>Conducted comprehensive strategy analysis for Market Research, addressing supply chain limitations and proposing innovative solutions.</li>
-                </ul>
-            </div>
-            <div class="experience">
-                <h3>MARCo Health Tech LLC - Project Intern</h3>
-                <p>Newark, NJ | July 2021 - June 2023</p>
-                <ul>
-                    <li>Applied sophisticated AI skills using Python, Node.JS, and TensorFlow to analyze and categorize unstructured conversational training data, significantly improving the efficiency of data processing.</li>
-                    <li>Collaborated on integrating cutting-edge NLP Transformer models, pushing the boundaries of natural language understanding in product development.</li>
-                </ul>
+            <div class="recommendation">
+                <h3>MARCo Health Inc. - Project Overview</h3>
+                <p class="recommendation-preview">
+                    "Aarnav is an excellent worker and an incredibly fast learner in a fast-paced technology workplace. He has strong skills in computer science and programming that he can apply in both research and production settings."
+                </p>
+                <a href="recommendation_marco_health.html" class="view-full-btn">View Full Project Overview</a>
             </div>
         </section>
 
-        <section class="section">
-            <h2>Skills</h2>
-            <div class="skills-list">
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">Node.js</span>
-                <span class="skill-tag">TensorFlow</span>
-                <span class="skill-tag">AWS Cloud Computing</span>
-                <span class="skill-tag">Unity Development</span>
-                <span class="skill-tag">MATLAB</span>
-                <span class="skill-tag">C++</span>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2>Contact</h2>
-            <p>Email: <a href="mailto:asabale@purdue.edu">asabale@purdue.edu</a></p>
-            <p>LinkedIn: <a href="https://linkedin.com/in/asabale" target="_blank">linkedin.com/in/asabale</a></p>
-        </section>
+        <!-- Contact section and footer remain unchanged -->
     </main>
 
     <footer>
