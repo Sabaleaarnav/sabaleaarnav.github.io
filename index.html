@@ -4,38 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aarnav Sabale - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --background-color: #f4f4f4;
+            --text-color: #333;
+        }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             line-height: 1.6;
-            color: #333;
-            max-width: 800px;
+            color: var(--text-color);
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
+            background-color: var(--background-color);
         }
         header {
-            background-color: #f4f4f4;
-            padding: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 20px;
             text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        h1, h2 {
-            color: #2c3e50;
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
         }
         .section {
+            background-color: white;
+            padding: 25px;
             margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .project, .experience {
             background-color: #f9f9f9;
-            padding: 15px;
-            margin-bottom: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
             border-radius: 5px;
+            border-left: 4px solid var(--primary-color);
+        }
+        .project h3, .experience h3 {
+            color: var(--primary-color);
+            margin-top: 0;
         }
         a {
-            color: #3498db;
+            color: var(--primary-color);
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         a:hover {
-            text-decoration: underline;
+            color: var(--secondary-color);
+        }
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .skill-tag {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--secondary-color);
         }
     </style>
 </head>
@@ -48,22 +94,22 @@
     <main>
         <section class="section">
             <h2>About Me</h2>
-            <p>I'm a Computer Engineering student at Purdue University with a focus on Artificial Intelligence. I'm passionate about leveraging technology to solve real-world problems.</p>
+            <p>I'm a Computer Engineering student at Purdue University with a focus on Artificial Intelligence. Passionate about leveraging cutting-edge technology to solve real-world problems, I'm constantly exploring new frontiers in AI and machine learning.</p>
         </section>
 
         <section class="section">
             <h2>Projects</h2>
             <div class="project">
                 <h3>AI Project Intern</h3>
-                <p>Developed a comprehensive database to track all kids at TGCS, including their application process and IQ test results.</p>
+                <p>Developed a comprehensive database to track all kids at TGCS, including their application process and IQ test results. This project streamlined the organization's data management, improving efficiency and decision-making processes.</p>
             </div>
             <div class="project">
                 <h3>Machine Learning Cane with xAI Communication</h3>
-                <p>Developing an AI recognition system for assistive canes enabling real-time communication using LIME xAI.</p>
+                <p>Currently developing an AI recognition system for assistive canes, enabling real-time communication using LIME xAI. This innovative project aims to enhance mobility and independence for visually impaired individuals.</p>
             </div>
             <div class="project">
                 <h3>Database for TGCS</h3>
-                <p>Developed a comprehensive database to track all kids at TGCS, including their application process and IQ test results.</p>
+                <p>Created a robust database system to efficiently manage and analyze data for all TGCS participants, including detailed application processes and IQ test results. This system significantly improved data accessibility and reporting capabilities.</p>
             </div>
         </section>
 
@@ -73,23 +119,32 @@
                 <h3>Boilermaker Consulting Group - Project Manager</h3>
                 <p>West Lafayette, IN | January 2024 – Present</p>
                 <ul>
-                    <li>Leading the development of a leasing optimization tool for a 1,700-unit apartment portfolio</li>
-                    <li>Developed strategy analysis for Market Research due to supply chain limitations</li>
+                    <li>Spearheading the development of an advanced leasing optimization tool for a 1,700-unit apartment portfolio, leveraging data analytics to maximize occupancy and revenue.</li>
+                    <li>Conducted comprehensive strategy analysis for Market Research, addressing supply chain limitations and proposing innovative solutions.</li>
                 </ul>
             </div>
             <div class="experience">
                 <h3>MARCo Health Tech LLC - Project Intern</h3>
                 <p>Newark, NJ | July 2021 - June 2023</p>
                 <ul>
-                    <li>Applied AI skills in Python, Node.JS, and TensorFlow to sort through unstructured conversational training data</li>
-                    <li>Worked with cutting-edge NLP Transformer models for product integration</li>
+                    <li>Applied sophisticated AI skills using Python, Node.JS, and TensorFlow to analyze and categorize unstructured conversational training data, significantly improving the efficiency of data processing.</li>
+                    <li>Collaborated on integrating cutting-edge NLP Transformer models, pushing the boundaries of natural language understanding in product development.</li>
                 </ul>
             </div>
         </section>
 
         <section class="section">
             <h2>Skills</h2>
-            <p>Python, JavaScript, Node.js, TensorFlow, AWS Cloud Computing, Unity Development, MATLAB, C++</p>
+            <div class="skills-list">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">TensorFlow</span>
+                <span class="skill-tag">AWS Cloud Computing</span>
+                <span class="skill-tag">Unity Development</span>
+                <span class="skill-tag">MATLAB</span>
+                <span class="skill-tag">C++</span>
+            </div>
         </section>
 
         <section class="section">
