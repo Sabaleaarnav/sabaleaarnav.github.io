@@ -4,160 +4,663 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aarnav Sabale - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2c3e50;
-            --background-color: #f4f4f4;
-            --text-color: #333;
+            --primary-color: #64ffda;
+            --secondary-color: #ff6b6b;
+            --accent-color: #4ecdc4;
+            --background-dark: #0a0a0a;
+            --background-secondary: #1a1a1a;
+            --background-tertiary: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #707070;
+            --border-color: #333333;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: var(--background-color);
-        }
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
+
+        * {
             margin: 0;
-            font-size: 2.5em;
+            padding: 0;
+            box-sizing: border-box;
         }
-        h2 {
-            color: var(--secondary-color);
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 10px;
-            margin-top: 40px;
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--background-dark);
+            overflow-x: hidden;
         }
-        .section {
-            background-color: white;
-            padding: 25px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .project, .experience {
-            background-color: #f9f9f9;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            border-left: 4px solid var(--primary-color);
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, rgba(102, 255, 218, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            backdrop-filter: blur(10px);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        .project h3, .experience h3 {
-            color: var(--primary-color);
-            margin-top: 0;
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff02" points="0,1000 1000,0 1000,1000"/></svg>');
+            pointer-events: none;
         }
-        a {
-            color: var(--primary-color);
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid transparent;
         }
-        a:hover {
-            color: var(--secondary-color);
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
         }
-        .skills-list {
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 255, 218, 0.3);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--background-secondary);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow);
+            border-color: var(--primary-color);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .card-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .card-description {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+
+        /* Skills */
+        .skills-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 1rem;
+            justify-content: center;
         }
+
+        .skill-category {
+            background: var(--background-secondary);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
         .skill-tag {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.9em;
+            background: linear-gradient(135deg, var(--background-tertiary), var(--background-secondary));
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
-        footer {
+
+        .skill-tag:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Research Highlights */
+        .research-highlight {
+            background: linear-gradient(135deg, var(--background-secondary) 0%, var(--background-tertiary) 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid var(--border-color);
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .research-highlight::before {
+            content: '🧠';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            font-size: 2rem;
+            background: var(--background-dark);
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .research-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .research-period {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Achievements */
+        .achievement-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .achievement-icon {
+            background: var(--gradient);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* Contact */
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            background: var(--background-secondary);
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
             text-align: center;
-            margin-top: 40px;
-            color: var(--secondary-color);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary-color);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--background-secondary);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .skills-container {
+                flex-direction: column;
+            }
+        }
+
+        /* Scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection styling */
+        ::selection {
+            background: var(--primary-color);
+            color: var(--background-dark);
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Aarnav Sabale</h1>
-        <p>Computer Engineering Student | AI Enthusiast | Researcher</p>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Aarnav Sabale</h1>
+                <p class="hero-subtitle">Computer Engineering • AI Research • Consulting</p>
+                <p class="hero-description">
+                    Purdue Computer Engineering student specializing in AI/ML with hands-on experience in biomedical research, 
+                    enterprise consulting, and cutting-edge model optimization. Passionate about leveraging technology to solve complex problems.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#experience" class="btn btn-primary">
+                        <i class="fas fa-briefcase"></i>
+                        View Experience
+                    </a>
+                    <a href="mailto:asabale@purdue.edu" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </div>
     </header>
 
     <main>
+        <!-- Research Highlight Section -->
         <section class="section">
-            <h2>About Me</h2>
-            <p>I'm a Computer Engineering student at Purdue University with a focus on Artificial Intelligence. Passionate about leveraging cutting-edge technology to solve real-world problems, I'm constantly exploring new frontiers in AI and machine learning.</p>
-        </section>
-
-        <section class="section">
-            <h2>Projects</h2>
-            <div class="project">
-                <h3>AI Project Intern</h3>
-                <p>Developed a comprehensive database to track all kids at TGCS, including their application process and IQ test results. This project streamlined the organization's data management, improving efficiency and decision-making processes.</p>
-            </div>
-            <div class="project">
-                <h3>Machine Learning Cane with xAI Communication</h3>
-                <p>Currently developing an AI recognition system for assistive canes, enabling real-time communication using LIME xAI. This innovative project aims to enhance mobility and independence for visually impaired individuals.</p>
-            </div>
-            <div class="project">
-                <h3>Database for TGCS</h3>
-                <p>Created a robust database system to efficiently manage and analyze data for all TGCS participants, including detailed application processes and IQ test results. This system significantly improved data accessibility and reporting capabilities.</p>
+            <div class="container">
+                <div class="research-highlight">
+                    <h2 class="research-title">Current Research: Cardiac MRI Strain-Mapping Pipeline</h2>
+                    <p class="research-period">Biomedical Engineering Research • Summer 2024</p>
+                    <p class="card-description">
+                        Led the complete refactoring of a MATLAB-based cardiac MRI strain-mapping pipeline into a high-performance Python framework. 
+                        Developed a Fourier-Feature–augmented multilayer perceptron (MLP) with sinusoidal positional encodings, leveraging PyTorch 
+                        on Apple-silicon GPUs. Achieved 50% code complexity reduction, real-time inference for 4D displacement fields, and superior 
+                        precision compared to conventional CNNs and spline methods. The modular design seamlessly incorporates mixed-signal circuit 
+                        analytics, demonstrating skills directly applicable to AI engineering and tech consulting roles.
+                    </p>
+                </div>
             </div>
         </section>
 
-        <section class="section">
-            <h2>Experience</h2>
-            <div class="experience">
-                <h3>Boilermaker Consulting Group - Project Manager</h3>
-                <p>West Lafayette, IN | January 2024 – Present</p>
-                <ul>
-                    <li>Spearheading the development of an advanced leasing optimization tool for a 1,700-unit apartment portfolio, leveraging data analytics to maximize occupancy and revenue.</li>
-                    <li>Conducted comprehensive strategy analysis for Market Research, addressing supply chain limitations and proposing innovative solutions.</li>
-                </ul>
-            </div>
-            <div class="experience">
-                <h3>MARCo Health Tech LLC - Project Intern</h3>
-                <p>Newark, NJ | July 2021 - June 2023</p>
-                <ul>
-                    <li>Applied sophisticated AI skills using Python, Node.JS, and TensorFlow to analyze and categorize unstructured conversational training data, significantly improving the efficiency of data processing.</li>
-                    <li>Collaborated on integrating cutting-edge NLP Transformer models, pushing the boundaries of natural language understanding in product development.</li>
-                </ul>
+        <!-- Experience Section -->
+        <section id="experience" class="section">
+            <div class="container">
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3 class="card-title">Lead Undergraduate Researcher</h3>
+                        <p class="card-subtitle">Purdue University • August 2023 – Present</p>
+                        <div class="card-description">
+                            <p>• Researching novel object detection techniques leveraging metadata storage to prevent re-classification, enhancing AI-driven autonomy for the visually impaired</p>
+                            <p>• Developing AI recognition systems for assistive canes with real-time communication using LIME xAI</p>
+                            <p>• Designed containerized AI Assistant trained on Rasa with intent-based NLU for daily task management</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Project Manager</h3>
+                        <p class="card-subtitle">Boilermaker Consulting Group • January 2024 – Present</p>
+                        <div class="card-description">
+                            <p>• Leading development of leasing optimization tool for 1,700-unit apartment portfolio using smart pricing algorithms and credit-based systems</p>
+                            <p>• Developed product fulfillment backend and optimized inventory using ML and historical data, reducing waste and improving stock accuracy</p>
+                            <p>• Conducted comprehensive strategy analysis addressing supply chain limitations with innovative solutions</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Project Intern</h3>
+                        <p class="card-subtitle">MARCo Health Tech LLC • July 2021 - June 2023</p>
+                        <div class="card-description">
+                            <p>• Applied AI skills in Python, Node.JS, and TensorFlow to programmatically classify unstructured conversational training data</p>
+                            <p>• Integrated cutting-edge NLP Transformer models, improving conversation effectiveness to 96% through optimized training parameters</p>
+                            <p>• Contributed to IEEE Xplore publication on NLP Model Integration for Mental Health Applications</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Biomedical Engineering Researcher</h3>
+                        <p class="card-subtitle">Purdue University • Summer 2024</p>
+                        <div class="card-description">
+                            <p>• Refactored MATLAB cardiac MRI pipeline into Python framework with 50% complexity reduction</p>
+                            <p>• Implemented Fourier-Feature MLP with PyTorch GPU optimization for real-time 4D displacement inference</p>
+                            <p>• Achieved superior precision vs. CNNs and splines, with seamless mixed-signal circuit analytics integration</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- Projects Section -->
         <section class="section">
-            <h2>Skills</h2>
-            <div class="skills-list">
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">Node.js</span>
-                <span class="skill-tag">TensorFlow</span>
-                <span class="skill-tag">AWS Cloud Computing</span>
-                <span class="skill-tag">Unity Development</span>
-                <span class="skill-tag">MATLAB</span>
-                <span class="skill-tag">C++</span>
-                <span class="skill-tag">HTML</span>
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3 class="card-title">AI-Powered Assistive Cane</h3>
+                        <div class="card-description">
+                            Machine learning cane with xAI communication system enabling real-time object recognition and navigation assistance for visually impaired individuals. Features LIME explainable AI for transparent decision-making.
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Enterprise Database System</h3>
+                        <div class="card-description">
+                            Comprehensive database solution for TGCS tracking application processes and IQ test results. Streamlined data management with improved efficiency and advanced reporting capabilities.
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Campus AI Solutions</h3>
+                        <div class="card-description">
+                            Developed Amazon Rekognition system for dining hall optimization and AI drone delivery platform for campus logistics. Integrated computer vision with practical applications.
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- Achievements Section -->
         <section class="section">
-            <h2>Contact</h2>
-            <p>Email: <a href="mailto:asabale@purdue.edu">asabale@purdue.edu</a></p>
-            <p>LinkedIn: <a href="https://linkedin.com/in/asabale" target="_blank">linkedin.com/in/asabale</a></p>
+            <div class="container">
+                <h2 class="section-title">Achievements & Recognition</h2>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3 class="card-title">Publications & Patents</h3>
+                        <div class="achievement-item">
+                            <div class="achievement-icon"><i class="fas fa-book"></i></div>
+                            <div>
+                                <strong>IEEE Xplore Publication:</strong> Natural Language Processing Model Integration for Human Mental Health Companion Robot
+                            </div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-icon"><i class="fas fa-patent"></i></div>
+                            <div>
+                                <strong>US Federal Patent Co-Author:</strong> NLP Model Usage within Mental Health Robot
+                            </div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-icon"><i class="fas fa-file-alt"></i></div>
+                            <div>
+                                <strong>JAIR & arXiv:</strong> Peer-Reviewed Pre-Publication
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Awards & Grants</h3>
+                        <div class="achievement-item">
+                            <div class="achievement-icon"><i class="fas fa-trophy"></i></div>
+                            <div>
+                                <strong>NSF Phase 1 R&D Project Award</strong>
+                            </div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-icon"><i class="fas fa-medal"></i></div>
+                            <div>
+                                <strong>Presidential Volunteer Service Award - Gold Tier:</strong> 200+ community service hours
+                            </div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-icon"><i class="fas fa-scout"></i></div>
+                            <div>
+                                <strong>Eagle Scout - Silver Palm</strong> (May 2022)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-code"></i> Programming</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">MATLAB</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-brain"></i> AI/ML</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">PyTorch</span>
+                            <span class="skill-tag">NLP Transformers</span>
+                            <span class="skill-tag">Computer Vision</span>
+                            <span class="skill-tag">Rasa</span>
+                            <span class="skill-tag">LIME xAI</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-cloud"></i> Cloud & Tools</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Unity</span>
+                            <span class="skill-tag">Autodesk Fusion</span>
+                            <span class="skill-tag">KiCad</span>
+                            <span class="skill-tag">Arduino IDE</span>
+                            <span class="skill-tag">Git</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Education</h2>
+                <div class="card" style="max-width: 800px; margin: 0 auto;">
+                    <h3 class="card-title">Purdue University</h3>
+                    <p class="card-subtitle">B.S. Computer Engineering, Minor in Mathematics • May 2027</p>
+                    <div class="card-description">
+                        <p><strong>GPA:</strong> 3.5/4.0</p>
+                        <p><strong>Concentration:</strong> Artificial Intelligence</p>
+                        <p><strong>Location:</strong> West Lafayette, IN</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Let's Connect</h2>
+                <div class="contact-info">
+                    <a href="mailto:asabale@purdue.edu" class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div>asabale@purdue.edu</div>
+                    </a>
+                    <a href="https://linkedin.com/in/asabale" target="_blank" class="contact-item">
+                        <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+                        <div>LinkedIn Profile</div>
+                    </a>
+                    <a href="tel:201-749-0877" class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <div>(201) 749-0877</div>
+                    </a>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Aarnav Sabale. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2024 Aarnav Sabale. All rights reserved.</p>
+        </div>
     </footer>
 </body>
 </html>
-
