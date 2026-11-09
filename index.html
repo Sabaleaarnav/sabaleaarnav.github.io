@@ -1,666 +1,398 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aarnav Sabale - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #64ffda;
-            --secondary-color: #ff6b6b;
-            --accent-color: #4ecdc4;
-            --background-dark: #0a0a0a;
-            --background-secondary: #1a1a1a;
-            --background-tertiary: #2a2a2a;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --text-muted: #707070;
-            --border-color: #333333;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Aarnav Sabale’s online résumé. Purdue engineering, applied machine learning, software projects, consulting, and research.">
+  <meta name="theme-color" content="#f8f7f3">
+  <link rel="canonical" href="https://sabaleaarnav.github.io/">
+  <title>Aarnav Sabale | Résumé &amp; Selected Work</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f8f7f3;
+      --white: #fff;
+      --ink: #142035;
+      --muted: #4d596a;
+      --rule: #d4d8dd;
+      --accent: #244ab8;
+      --night: #132657;
+      --width: 70rem;
+      --gutter: clamp(1.2rem, 5vw, 3.75rem);
+      --mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 1rem/1.65 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--background-dark);
-            overflow-x: hidden;
-        }
+    h1, h2, h3, p, figure, dl, dd { margin: 0; }
+    h1, h2, h3 { line-height: 1.05; }
+    ul { padding-inline-start: 1.2em; }
+    a { color: var(--accent); text-underline-offset: .2em; }
+    a:hover { text-decoration-thickness: .14em; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+    [id] { scroll-margin-top: 7.5rem; }
+    .wrap { width: min(var(--width), calc(100% - 2 * var(--gutter))); margin-inline: auto; }
+    .kicker, .index, .meta, dt, figcaption {
+      font: .73rem/1.5 var(--mono);
+      letter-spacing: .065em;
+      text-transform: uppercase;
+    }
+    .kicker, .index { color: var(--accent); }
+    .meta, figcaption { color: var(--muted); }
+    .skip-link { position: fixed; left: 1rem; top: 1rem; transform: translateY(-200%); z-index: 3; padding: .5rem .75rem; background: var(--white); }
+    .skip-link:focus { transform: none; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    .site-header {
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 2;
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+    }
+    .header-inner { min-height: 4.15rem; display: flex; align-items: center; justify-content: space-between; gap: .65rem 1.5rem; }
+    .wordmark { display: inline-flex; align-items: center; gap: .7rem; font-weight: 760; color: var(--ink); text-decoration: none; white-space: nowrap; }
+    .monogram { display: grid; place-items: center; width: 1.9rem; height: 1.9rem; background: var(--night); color: var(--white); font: 700 .69rem/1 var(--mono); }
+    .nav { display: flex; flex-wrap: wrap; column-gap: clamp(.8rem, 3vw, 2.15rem); }
+    .nav a { padding-block: .62rem; color: var(--muted); text-decoration: none; font-size: .87rem; font-weight: 620; }
+    .nav a:hover { color: var(--accent); text-decoration: underline; }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, rgba(102, 255, 218, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            backdrop-filter: blur(10px);
-            padding: 80px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+    .hero { display: grid; grid-template-columns: 1.14fr 1fr; align-items: center; gap: clamp(1.8rem, 5vw, 5rem); padding-block: clamp(3.15rem, 8vw, 7rem) clamp(2.7rem, 6vw, 5rem); }
+    .hero h1 { margin: .75rem 0 1.3rem; font-size: clamp(3.8rem, 8vw, 7.5rem); letter-spacing: -.09em; line-height: .88; font-weight: 790; }
+    .hero .intro { max-width: 29rem; color: var(--muted); font-size: clamp(1rem, 1.3vw, 1.19rem); }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem 1.3rem; margin-top: 1.65rem; }
+    .button, .print-button { min-height: 2.75rem; display: inline-flex; align-items: center; gap: .55rem; border: 1px solid var(--accent); padding: .55rem .9rem; font: 650 .87rem/1.4 system-ui, sans-serif; cursor: pointer; transition: background-color .18s, color .18s; }
+    .button { background: var(--accent); color: var(--white); text-decoration: none; }
+    .button:hover { background: var(--night); border-color: var(--night); }
+    .print-button { background: transparent; color: var(--accent); }
+    .print-button:hover { background: var(--accent); color: var(--white); }
+    .print-button[hidden] { display: none; }
+    .field { min-width: 0; }
+    .field svg { display: block; width: 100%; height: auto; background: var(--night); }
+    figcaption { margin-top: .65rem; display: flex; justify-content: space-between; gap: .65rem; }
 
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff02" points="0,1000 1000,0 1000,1000"/></svg>');
-            pointer-events: none;
-        }
+    .section { padding-block: clamp(2.6rem, 6vw, 5.25rem); border-top: 1px solid var(--rule); }
+    .section-head { display: grid; grid-template-columns: 2.15rem 1fr; gap: .5rem; align-items: baseline; margin-bottom: clamp(1.55rem, 4vw, 3rem); }
+    .section-head h2 { font-size: clamp(2rem, 4.3vw, 3.35rem); letter-spacing: -.062em; font-weight: 770; }
+    .research-layout { display: grid; grid-template-columns: 1.55fr 1fr; gap: 1.6rem clamp(1.8rem, 5vw, 5rem); }
+    .research-layout h3, .entry h3 { font-size: clamp(1.3rem, 2.7vw, 1.9rem); letter-spacing: -.04em; line-height: 1.15; }
+    .research-layout .meta { margin-block: .45rem .75rem; }
+    .description { color: var(--muted); max-width: 65ch; }
+    .inline-link { display: inline-block; margin-top: .65rem; font-size: .9rem; font-weight: 670; }
+    .metrics { display: grid; grid-template-columns: 1fr 1fr; align-self: start; gap: .9rem; }
+    .metrics > div { border-top: 2px solid var(--accent); padding-top: .8rem; display: flex; flex-direction: column; }
+    .metrics dt { order: 1; color: var(--muted); margin-top: .2rem; }
+    .metrics dd { font-weight: 760; color: var(--accent); font-size: clamp(1.85rem, 4vw, 3.25rem); letter-spacing: -.065em; line-height: 1; }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
+    .entries { border-top: 1px solid var(--rule); }
+    .entry { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: .55rem clamp(1.4rem, 5vw, 4.5rem); padding-block: 1.25rem; border-bottom: 1px solid var(--rule); }
+    .entry .meta { margin-top: .32rem; }
+    .entry ul { margin: 0; color: var(--muted); }
+    .entry li + li { margin-top: .22rem; }
+    .archive { margin-top: 1.2rem; }
+    .archive summary { min-height: 2.75rem; padding-block: .55rem; cursor: pointer; color: var(--accent); font-weight: 650; }
+    .archive ul { margin-block: .35rem 0; color: var(--muted); }
+    .archive li + li { margin-top: .4rem; }
 
-        .hero-title {
-            font-size: 4rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            animation: fadeInUp 0.8s ease-out;
-        }
+    .credentials { display: grid; grid-template-columns: 1fr 1fr; gap: 1.9rem clamp(1.7rem, 7vw, 6rem); }
+    .credentials > div { border-top: 1px solid var(--rule); padding-top: 1rem; }
+    .credentials h3 { font-size: 1.32rem; letter-spacing: -.025em; margin-bottom: .6rem; }
+    .credentials ul { color: var(--muted); margin: 0; }
+    .credentials li + li { margin-top: .32rem; }
+    .credentials .meta { margin-bottom: .4rem; }
+    .skills dt { color: var(--accent); margin-block: .55rem .15rem; }
+    .skills dd { color: var(--muted); }
 
-        .hero-subtitle {
-            font-size: 1.4rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
+    .contact { background: var(--night); color: var(--white); padding-block: clamp(2.5rem, 6vw, 4.75rem); }
+    .contact .kicker { color: #b5c9ff; }
+    .contact h2 { font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: -.06em; margin: .45rem 0 1.05rem; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: .45rem 1.35rem; }
+    .contact a { color: #e3eaff; font-weight: 600; padding-block: .3rem; }
+    .contact a:focus-visible { outline-color: #b5c9ff; }
+    .contact .footnote { margin-top: 2.25rem; color: #b5c9ff; }
 
-        .hero-description {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
-        }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-copy { animation: enter .55s ease-out both; }
+      .field { animation: enter .62s .1s ease-out both; }
+      @keyframes enter { from { opacity: 0; transform: translateY(.85rem); } to { opacity: 1; transform: translateY(0); } }
+    }
 
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease-out 0.6s both;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: 2px solid transparent;
-        }
-
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 255, 218, 0.3);
-        }
-
-        /* Sections */
-        .section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
-        /* Cards */
-        .card {
-            background: var(--background-secondary);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--gradient);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--card-shadow);
-            border-color: var(--primary-color);
-        }
-
-        .card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .card-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .card-subtitle {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .card-description {
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
-
-        /* Grid Layouts */
-        .grid {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .grid-2 {
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-        }
-
-        .grid-3 {
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        }
-
-        /* Skills */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .skill-category {
-            background: var(--background-secondary);
-            border-radius: 15px;
-            padding: 1.5rem;
-            border: 1px solid var(--border-color);
-            flex: 1;
-            min-width: 250px;
-        }
-
-        .skill-category h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .skill-tag {
-            background: linear-gradient(135deg, var(--background-tertiary), var(--background-secondary));
-            color: var(--text-secondary);
-            padding: 6px 14px;
-            border-radius: 25px;
-            font-size: 0.85rem;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .skill-tag:hover {
-            background: var(--gradient);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Research Highlights */
-        .research-highlight {
-            background: linear-gradient(135deg, var(--background-secondary) 0%, var(--background-tertiary) 100%);
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 1px solid var(--border-color);
-            margin: 2rem 0;
-            position: relative;
-        }
-
-        .research-highlight::before {
-            content: '🧠';
-            position: absolute;
-            top: -10px;
-            right: 20px;
-            font-size: 2rem;
-            background: var(--background-dark);
-            padding: 10px;
-            border-radius: 50%;
-        }
-
-        .research-title {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .research-period {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Achievements */
-        .achievement-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .achievement-icon {
-            background: var(--gradient);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        /* Contact */
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            background: var(--background-secondary);
-            padding: 1.5rem 2rem;
-            border-radius: 15px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .contact-item:hover {
-            transform: translateY(-3px);
-            border-color: var(--primary-color);
-        }
-
-        .contact-icon {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--background-secondary);
-            padding: 2rem 0;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .grid-2, .grid-3 {
-                grid-template-columns: 1fr;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .skills-container {
-                flex-direction: column;
-            }
-        }
-
-        /* Scroll behavior */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Selection styling */
-        ::selection {
-            background: var(--primary-color);
-            color: var(--background-dark);
-        }
-    </style>
+    @media (max-width: 48rem) {
+      .hero { grid-template-columns: 1fr; }
+      .hero h1 br { display: none; }
+      .field { max-width: 33rem; }
+      .research-layout { grid-template-columns: 1fr; }
+      .metrics { max-width: 27rem; }
+    }
+    @media (max-width: 35rem) {
+      .header-inner { align-items: flex-start; flex-direction: column; gap: .1rem; padding-block: .52rem .2rem; }
+      .nav { column-gap: clamp(.65rem, 4vw, 1.3rem); }
+      .nav a { font-size: .8rem; }
+      .hero h1 { font-size: clamp(3.2rem, 12.5vw, 4.4rem); }
+      .entry, .credentials { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+    @media print {
+      @page { margin: 13mm; }
+      :root { --paper: #fff; --ink: #111; --muted: #333; --accent: #183774; }
+      body { font-size: 9.5pt; }
+      .wrap { width: 100%; }
+      .site-header, .skip-link, .actions, .field { display: none; }
+      .hero { display: block; padding-block: 0 1rem; }
+      .hero-copy { animation: none; }
+      .hero h1 { font-size: 36pt; }
+      .hero h1 br { display: none; }
+      .section, .contact { padding-block: .85rem; }
+      .section-head { margin-bottom: .7rem; }
+      .section-head h2, .contact h2 { font-size: 18pt; }
+      .entry { padding-block: .55rem; }
+      .entry, .credentials > div, .metrics, .research-layout { break-inside: avoid; }
+      h2, h3, summary { break-after: avoid; }
+      .contact { background: #fff; color: var(--ink); }
+      .contact a, .contact .kicker { color: var(--accent); }
+      .contact .footnote { display: none; }
+    }
+  </style>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Aarnav Sabale</h1>
-                <p class="hero-subtitle">Computer Engineering • AI Research • Consulting</p>
-                <p class="hero-description">
-                    Purdue Computer Engineering student specializing in AI/ML with hands-on experience in biomedical research, 
-                    enterprise consulting, and cutting-edge model optimization. Passionate about leveraging technology to solve complex problems.
-                </p>
-                <div class="cta-buttons">
-                    <a href="#experience" class="btn btn-primary">
-                        <i class="fas fa-briefcase"></i>
-                        View Experiences
-                    </a>
-                    <a href="mailto:asabale@purdue.edu" class="btn btn-secondary">
-                        <i class="fas fa-envelope"></i>
-                        Get In Touch
-                    </a>
-                </div>
-            </div>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="#top"><span class="monogram" aria-hidden="true">AS</span> Aarnav Sabale</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="main" tabindex="-1">
+    <section class="hero" aria-labelledby="name">
+      <div class="hero-copy">
+        <p class="kicker">Purdue University · West Lafayette, IN</p>
+        <h1 id="name">Aarnav <br>Sabale</h1>
+        <p class="intro">I study electrical engineering at Purdue and build software for biomedical research, accessibility, and everyday planning.</p>
+        <div class="actions">
+          <a class="button" href="#projects">Explore projects <span aria-hidden="true">↓</span></a>
+          <button class="print-button" type="button" hidden>Print résumé</button>
         </div>
-    </header>
+      </div>
+      <figure class="field">
+        <svg viewBox="0 0 520 396" aria-hidden="true" focusable="false">
+          <defs>
+            <clipPath id="plane"><path d="M29 276 260 216 491 276 260 376Z"/></clipPath>
+            <linearGradient id="wire-ink" x2="1" y2="0.35"><stop stop-color="#6998ef"/><stop offset=".52" stop-color="#e0ebff"/><stop offset="1" stop-color="#86b0ff"/></linearGradient>
+          </defs>
+          <rect width="520" height="396" fill="#132657"/>
+          <g stroke="#91b3f7" stroke-width=".65" fill="none" opacity=".45">
+            <path d="M29 276 260 216 491 276 260 376Z"/>
+            <g clip-path="url(#plane)"><path d="M -130 276 l 265 100 M -130 376 l 265 -100"/><path d="M -77 276 l 265 100 M -77 376 l 265 -100"/><path d="M -24 276 l 265 100 M -24 376 l 265 -100"/><path d="M 29 276 l 265 100 M 29 376 l 265 -100"/><path d="M 82 276 l 265 100 M 82 376 l 265 -100"/><path d="M 135 276 l 265 100 M 135 376 l 265 -100"/><path d="M 188 276 l 265 100 M 188 376 l 265 -100"/><path d="M 241 276 l 265 100 M 241 376 l 265 -100"/><path d="M 294 276 l 265 100 M 294 376 l 265 -100"/><path d="M 347 276 l 265 100 M 347 376 l 265 -100"/><path d="M 400 276 l 265 100 M 400 376 l 265 -100"/><path d="M 453 276 l 265 100 M 453 376 l 265 -100"/><path d="M 506 276 l 265 100 M 506 376 l 265 -100"/><path d="M 559 276 l 265 100 M 559 376 l 265 -100"/><path d="M 612 276 l 265 100 M 612 376 l 265 -100"/></g>
+            <path d="M28 44V24H48 M472 24H492V44 M28 352V372H48 M472 372H492V352"/>
+            <path d="M260 49V354" stroke-dasharray="3 6"/>
+          </g>
+          <g fill="none" stroke="url(#wire-ink)" stroke-width=".82">
+            <path d="M 418.0 278.0 L 419.6 282.9 L 418.0 287.4 L 412.9 291.4 L 404.6 294.7 L 393.6 297.1 L 381.0 298.7 L 367.9 299.5 L 355.3 299.9 L 343.6 300.2 L 332.9 300.7 L 323.0 301.7 L 313.1 303.2 L 302.7 305.1 L 291.0 307.1 L 278.1 309.0 L 264.0 310.4 L 249.2 311.3 L 234.3 311.4 L 219.9 310.9 L 206.3 309.9 L 193.7 308.6 L 181.9 307.1 L 170.9 305.6 L 160.7 303.8 L 151.3 301.8 L 143.1 299.5 L 136.5 296.8 L 132.0 293.6 L 129.7 290.0 L 129.7 286.1 L 131.4 282.1 L 134.2 278.0 L 137.1 273.8 L 139.6 269.3 L 141.3 264.5 L 142.4 259.2 L 143.3 253.3 L 145.0 247.0 L 148.5 240.6 L 154.6 234.2 L 163.5 228.4 L 175.3 223.5 L 189.2 219.8 L 204.5 217.4 L 220.3 216.2 L 235.7 216.0 L 250.3 216.5 L 264.0 217.6 L 277.0 218.8 L 289.7 220.3 L 302.3 222.0 L 314.9 224.1 L 327.5 226.7 L 339.6 229.9 L 351.0 233.8 L 361.4 238.1 L 370.7 242.9 L 379.0 247.9 L 386.8 253.0 L 394.2 258.0 L 401.3 263.0 L 408.0 268.0 L 413.8 273.0 L 418.0 278.0 Z" opacity="0.32"/>
+            <path d="M 423.6 271.1 L 424.6 275.7 L 422.8 280.0 L 417.9 283.8 L 409.7 287.0 L 399.0 289.3 L 386.6 290.9 L 373.4 291.8 L 360.6 292.3 L 348.6 292.7 L 337.7 293.4 L 327.5 294.7 L 317.4 296.5 L 306.7 298.9 L 294.8 301.5 L 281.5 304.0 L 266.8 306.1 L 251.3 307.5 L 235.7 307.9 L 220.6 307.6 L 206.5 306.5 L 193.8 305.0 L 182.4 303.1 L 172.0 301.1 L 162.5 299.1 L 153.6 296.8 L 145.7 294.3 L 138.8 291.4 L 133.6 288.0 L 130.3 284.2 L 128.9 280.1 L 129.4 275.7 L 131.2 271.1 L 133.7 266.3 L 136.1 261.3 L 138.1 256.1 L 139.6 250.4 L 141.1 244.2 L 143.4 237.7 L 147.4 231.1 L 153.8 224.6 L 163.1 218.7 L 175.2 213.9 L 189.6 210.3 L 205.5 208.1 L 221.9 207.3 L 237.8 207.6 L 252.8 208.8 L 266.8 210.4 L 280.0 212.2 L 292.7 214.1 L 305.4 216.0 L 318.4 218.1 L 331.7 220.6 L 344.8 223.6 L 357.5 227.2 L 369.2 231.4 L 379.7 236.1 L 388.8 241.1 L 396.7 246.3 L 403.7 251.4 L 410.1 256.5 L 415.7 261.4 L 420.4 266.3 L 423.6 271.1 Z" opacity="0.34"/>
+            <path d="M 428.6 263.8 L 428.8 268.2 L 426.8 272.3 L 421.9 275.9 L 414.2 279.0 L 404.0 281.4 L 392.0 283.1 L 379.1 284.2 L 366.2 284.9 L 354.0 285.6 L 342.8 286.6 L 332.2 288.1 L 321.8 290.3 L 310.8 293.1 L 298.6 296.3 L 284.8 299.3 L 269.6 302.0 L 253.4 303.8 L 237.0 304.6 L 221.3 304.3 L 206.8 303.2 L 194.1 301.4 L 182.9 299.1 L 173.2 296.7 L 164.3 294.2 L 156.1 291.6 L 148.4 288.8 L 141.4 285.7 L 135.4 282.2 L 130.8 278.2 L 128.1 273.7 L 127.1 268.9 L 127.7 263.8 L 129.4 258.5 L 131.7 253.0 L 134.0 247.3 L 136.2 241.3 L 138.7 235.0 L 141.8 228.4 L 146.5 221.7 L 153.5 215.3 L 163.2 209.5 L 175.6 204.7 L 190.4 201.3 L 206.7 199.4 L 223.5 198.9 L 239.9 199.7 L 255.3 201.4 L 269.6 203.5 L 282.9 205.8 L 295.7 208.0 L 308.6 210.1 L 322.0 212.2 L 335.9 214.5 L 350.1 217.3 L 364.0 220.6 L 377.1 224.6 L 388.7 229.1 L 398.6 234.1 L 406.7 239.3 L 413.3 244.5 L 418.7 249.6 L 423.1 254.5 L 426.5 259.2 L 428.6 263.8 Z" opacity="0.37"/>
+            <path d="M 432.8 256.2 L 432.2 260.4 L 429.7 264.2 L 425.0 267.7 L 417.9 270.8 L 408.4 273.3 L 397.1 275.2 L 384.7 276.7 L 372.1 277.8 L 359.8 278.8 L 348.2 280.2 L 337.2 282.1 L 326.3 284.7 L 314.9 287.8 L 302.2 291.4 L 287.9 294.9 L 272.2 297.9 L 255.4 300.1 L 238.3 301.2 L 222.0 301.0 L 207.2 299.8 L 194.4 297.7 L 183.5 295.0 L 174.2 292.1 L 166.1 289.1 L 158.5 286.1 L 151.1 283.0 L 143.9 279.7 L 137.2 275.9 L 131.4 271.7 L 127.0 267.0 L 124.5 261.8 L 123.7 256.2 L 124.6 250.4 L 126.6 244.5 L 129.3 238.4 L 132.3 232.1 L 135.9 225.6 L 140.2 219.0 L 145.8 212.5 L 153.5 206.3 L 163.7 200.7 L 176.5 196.1 L 191.5 192.9 L 208.1 191.2 L 225.1 191.0 L 241.9 192.2 L 257.6 194.2 L 272.2 196.8 L 285.6 199.5 L 298.6 202.0 L 311.8 204.2 L 325.5 206.3 L 340.1 208.5 L 355.2 210.9 L 370.3 213.9 L 384.6 217.6 L 397.4 222.0 L 408.1 226.8 L 416.5 232.0 L 422.7 237.2 L 427.1 242.4 L 430.2 247.2 L 432.0 251.9 L 432.8 256.2 Z" opacity="0.39"/>
+            <path d="M 436.3 248.4 L 434.6 252.3 L 431.7 255.9 L 427.2 259.3 L 420.7 262.4 L 412.2 265.2 L 401.9 267.4 L 390.3 269.3 L 378.1 271.0 L 365.8 272.5 L 353.9 274.4 L 342.4 276.6 L 330.8 279.5 L 318.8 283.0 L 305.5 286.8 L 290.8 290.6 L 274.5 293.9 L 257.2 296.4 L 239.7 297.6 L 222.9 297.5 L 207.7 296.1 L 194.7 293.8 L 184.0 290.7 L 175.2 287.4 L 167.6 283.9 L 160.6 280.5 L 153.5 277.0 L 146.2 273.4 L 138.7 269.4 L 131.7 264.9 L 125.8 259.9 L 121.6 254.4 L 119.4 248.4 L 119.3 242.1 L 121.0 235.7 L 124.0 229.2 L 128.0 222.8 L 132.8 216.3 L 138.5 209.8 L 145.4 203.6 L 154.0 197.6 L 164.8 192.4 L 177.8 188.1 L 193.0 185.2 L 209.6 183.7 L 226.8 183.7 L 243.7 185.1 L 259.7 187.4 L 274.5 190.2 L 288.3 193.2 L 301.5 195.9 L 314.9 198.3 L 329.0 200.3 L 344.1 202.3 L 360.1 204.5 L 376.2 207.2 L 391.7 210.6 L 405.5 214.7 L 417.0 219.4 L 425.6 224.5 L 431.5 229.7 L 435.0 234.8 L 436.6 239.7 L 436.9 244.2 L 436.3 248.4 Z" opacity="0.41"/>
+            <path d="M 439.0 240.3 L 436.3 244.0 L 432.9 247.5 L 428.6 250.9 L 422.8 254.1 L 415.4 257.0 L 406.3 259.8 L 395.6 262.2 L 384.0 264.5 L 371.8 266.7 L 359.6 269.0 L 347.5 271.7 L 335.2 274.9 L 322.4 278.5 L 308.5 282.5 L 293.3 286.4 L 276.6 289.9 L 258.9 292.4 L 241.0 293.8 L 223.8 293.7 L 208.3 292.2 L 195.2 289.6 L 184.5 286.2 L 176.0 282.4 L 168.8 278.4 L 162.3 274.5 L 155.4 270.7 L 148.0 266.7 L 139.9 262.5 L 131.8 257.8 L 124.4 252.5 L 118.5 246.7 L 114.8 240.3 L 113.7 233.6 L 115.0 226.8 L 118.4 220.1 L 123.4 213.5 L 129.5 207.0 L 136.7 200.8 L 145.0 194.9 L 154.8 189.5 L 166.2 184.7 L 179.5 180.8 L 194.7 178.1 L 211.2 176.8 L 228.3 177.0 L 245.3 178.4 L 261.5 180.8 L 276.6 183.8 L 290.7 186.9 L 304.2 189.7 L 317.9 192.1 L 332.4 194.2 L 348.0 196.0 L 364.6 198.0 L 381.6 200.3 L 398.1 203.4 L 412.8 207.2 L 425.0 211.7 L 433.8 216.7 L 439.4 221.9 L 442.0 227.0 L 442.3 231.8 L 441.1 236.3 L 439.0 240.3 Z" opacity="0.44"/>
+            <path d="M 441.1 232.0 L 437.3 235.6 L 433.4 239.0 L 429.2 242.4 L 424.2 245.7 L 418.0 249.0 L 410.1 252.3 L 400.6 255.4 L 389.7 258.4 L 377.8 261.2 L 365.3 264.1 L 352.5 267.2 L 339.4 270.6 L 325.8 274.4 L 311.2 278.3 L 295.4 282.2 L 278.3 285.6 L 260.3 288.2 L 242.2 289.5 L 224.8 289.4 L 209.0 287.8 L 195.7 285.0 L 184.9 281.3 L 176.5 277.1 L 169.6 272.7 L 163.3 268.3 L 156.6 264.1 L 149.1 259.8 L 140.5 255.3 L 131.4 250.4 L 122.7 244.9 L 115.3 238.7 L 110.2 232.0 L 108.1 225.0 L 109.0 217.9 L 112.6 210.9 L 118.6 204.3 L 126.2 198.0 L 135.0 192.1 L 144.9 186.7 L 155.7 181.8 L 167.9 177.5 L 181.5 174.1 L 196.6 171.7 L 212.8 170.6 L 229.7 170.8 L 246.6 172.1 L 262.9 174.5 L 278.3 177.4 L 292.8 180.4 L 306.7 183.3 L 320.8 185.8 L 335.7 187.8 L 351.6 189.5 L 368.7 191.3 L 386.4 193.4 L 403.5 196.1 L 419.0 199.6 L 431.7 203.9 L 440.8 208.8 L 446.2 213.9 L 448.0 219.0 L 447.2 223.7 L 444.5 228.1 L 441.1 232.0 Z" opacity="0.46"/>
+            <path d="M 442.5 223.6 L 437.8 227.2 L 433.4 230.5 L 429.3 233.9 L 425.1 237.5 L 419.9 241.2 L 413.4 245.0 L 405.1 248.8 L 395.0 252.6 L 383.4 256.2 L 370.7 259.7 L 357.3 263.2 L 343.3 266.8 L 328.7 270.5 L 313.3 274.3 L 297.0 278.0 L 279.6 281.2 L 261.5 283.6 L 243.3 284.8 L 225.7 284.6 L 209.8 282.9 L 196.2 279.9 L 185.3 276.0 L 176.7 271.4 L 169.8 266.6 L 163.6 261.9 L 157.0 257.3 L 149.3 252.7 L 140.4 247.9 L 130.5 242.7 L 120.7 237.0 L 112.0 230.6 L 105.7 223.6 L 102.6 216.4 L 103.1 209.0 L 107.0 201.9 L 113.9 195.3 L 122.9 189.2 L 133.4 183.8 L 144.7 178.9 L 156.9 174.6 L 169.7 171.0 L 183.6 168.0 L 198.5 166.0 L 214.4 164.9 L 230.9 165.0 L 247.6 166.2 L 264.0 168.3 L 279.6 171.0 L 294.5 173.9 L 309.0 176.7 L 323.5 179.1 L 338.7 181.1 L 355.0 182.7 L 372.4 184.3 L 390.3 186.2 L 407.9 188.7 L 423.9 192.0 L 437.0 196.0 L 446.3 200.7 L 451.5 205.7 L 452.8 210.7 L 451.0 215.5 L 447.2 219.8 L 442.5 223.6 Z" opacity="0.48"/>
+            <path d="M 443.4 215.2 L 437.9 218.8 L 433.0 222.2 L 429.0 225.7 L 425.4 229.5 L 421.3 233.6 L 416.1 238.0 L 409.0 242.5 L 399.7 247.1 L 388.5 251.4 L 375.6 255.5 L 361.5 259.4 L 346.6 263.2 L 331.1 266.8 L 315.0 270.3 L 298.1 273.6 L 280.5 276.4 L 262.4 278.5 L 244.2 279.5 L 226.7 279.1 L 210.7 277.4 L 196.8 274.3 L 185.5 270.2 L 176.5 265.4 L 169.4 260.3 L 163.0 255.2 L 156.3 250.2 L 148.6 245.3 L 139.4 240.2 L 129.1 234.8 L 118.4 228.9 L 108.8 222.3 L 101.5 215.2 L 97.6 207.8 L 97.7 200.3 L 101.8 193.2 L 109.5 186.6 L 119.8 180.8 L 131.8 175.8 L 144.6 171.5 L 158.0 167.9 L 171.6 164.9 L 185.7 162.5 L 200.4 160.7 L 215.8 159.8 L 231.9 159.7 L 248.3 160.6 L 264.6 162.3 L 280.5 164.5 L 295.9 167.1 L 310.9 169.7 L 326.0 172.0 L 341.5 174.0 L 358.0 175.6 L 375.4 177.2 L 393.5 178.9 L 411.2 181.2 L 427.3 184.2 L 440.6 188.1 L 450.1 192.5 L 455.3 197.4 L 456.3 202.3 L 453.8 207.1 L 449.1 211.4 L 443.4 215.2 Z" opacity="0.51"/>
+            <path d="M 443.8 206.9 L 437.7 210.5 L 432.5 214.0 L 428.5 217.7 L 425.4 221.7 L 422.2 226.3 L 418.1 231.3 L 412.1 236.5 L 403.8 241.8 L 392.9 246.9 L 379.9 251.6 L 365.2 255.8 L 349.4 259.7 L 333.0 263.1 L 316.0 266.3 L 298.7 269.0 L 281.0 271.4 L 262.9 273.0 L 245.0 273.6 L 227.6 273.1 L 211.5 271.2 L 197.4 268.1 L 185.5 263.9 L 176.1 259.0 L 168.4 253.7 L 161.6 248.3 L 154.7 243.0 L 146.8 237.7 L 137.5 232.4 L 127.0 226.8 L 115.9 220.7 L 105.7 214.0 L 97.7 206.9 L 93.2 199.4 L 93.0 191.9 L 97.3 184.8 L 105.6 178.4 L 116.9 172.9 L 130.3 168.3 L 144.5 164.7 L 159.0 161.7 L 173.3 159.3 L 187.6 157.4 L 202.1 155.9 L 217.0 155.0 L 232.5 154.7 L 248.5 155.1 L 264.8 156.3 L 281.0 158.1 L 296.9 160.2 L 312.5 162.5 L 328.1 164.7 L 344.0 166.6 L 360.5 168.2 L 377.9 169.8 L 395.6 171.5 L 413.1 173.6 L 429.2 176.5 L 442.5 180.1 L 452.1 184.3 L 457.3 189.0 L 458.2 193.9 L 455.4 198.6 L 450.2 202.9 L 443.8 206.9 Z" opacity="0.53"/>
+            <path d="M 443.9 198.6 L 437.3 202.3 L 431.9 206.0 L 428.0 210.0 L 425.2 214.3 L 422.7 219.3 L 419.5 224.9 L 414.5 230.8 L 406.9 236.8 L 396.4 242.5 L 383.3 247.7 L 368.1 252.3 L 351.5 256.1 L 334.2 259.4 L 316.5 262.0 L 298.7 264.2 L 280.9 265.9 L 263.1 266.9 L 245.5 267.2 L 228.3 266.4 L 212.3 264.4 L 197.8 261.3 L 185.5 257.2 L 175.2 252.3 L 166.7 246.8 L 159.3 241.2 L 152.0 235.6 L 144.0 230.1 L 134.7 224.5 L 124.2 218.7 L 113.1 212.5 L 102.7 205.8 L 94.4 198.6 L 89.6 191.1 L 89.2 183.7 L 93.6 176.8 L 102.3 170.6 L 114.5 165.4 L 129.0 161.3 L 144.4 158.2 L 159.8 155.9 L 174.8 154.1 L 189.2 152.6 L 203.4 151.4 L 217.8 150.5 L 232.8 149.9 L 248.3 149.9 L 264.5 150.4 L 280.9 151.5 L 297.4 153.1 L 313.6 155.0 L 329.8 156.9 L 346.0 158.8 L 362.6 160.5 L 379.6 162.1 L 396.9 163.9 L 413.8 166.0 L 429.4 168.7 L 442.6 172.1 L 452.2 176.2 L 457.5 180.7 L 458.6 185.5 L 455.8 190.2 L 450.5 194.5 L 443.9 198.6 Z" opacity="0.55"/>
+            <path d="M 443.5 190.5 L 437.0 194.4 L 431.4 198.4 L 427.5 202.6 L 424.9 207.3 L 422.8 212.7 L 420.3 218.8 L 416.0 225.2 L 409.0 231.8 L 398.9 238.1 L 385.8 243.8 L 370.1 248.6 L 352.8 252.5 L 334.7 255.4 L 316.4 257.5 L 298.2 259.0 L 280.4 260.0 L 262.9 260.4 L 245.7 260.1 L 228.9 259.1 L 212.9 257.1 L 198.2 254.0 L 185.2 250.0 L 174.0 245.1 L 164.6 239.7 L 156.3 233.9 L 148.5 228.1 L 140.2 222.3 L 131.0 216.5 L 120.9 210.5 L 110.2 204.3 L 100.0 197.6 L 91.8 190.5 L 87.0 183.2 L 86.5 175.9 L 90.9 169.2 L 99.9 163.3 L 112.7 158.5 L 127.9 154.8 L 144.1 152.2 L 160.3 150.4 L 175.8 149.2 L 190.4 148.1 L 204.4 147.1 L 218.3 146.1 L 232.6 145.2 L 247.8 144.6 L 263.8 144.5 L 280.4 144.9 L 297.4 145.8 L 314.3 147.2 L 331.0 148.9 L 347.5 150.7 L 364.0 152.5 L 380.6 154.3 L 397.1 156.1 L 413.2 158.3 L 428.2 160.9 L 440.9 164.2 L 450.4 168.1 L 456.0 172.5 L 457.4 177.1 L 455.1 181.8 L 450.0 186.3 L 443.5 190.5 Z" opacity="0.58"/>
+            <path d="M 442.8 182.6 L 436.6 186.8 L 431.1 191.1 L 427.1 195.7 L 424.5 200.7 L 422.7 206.5 L 420.4 213.0 L 416.6 219.9 L 410.0 226.9 L 400.2 233.7 L 387.0 239.7 L 371.1 244.7 L 353.3 248.5 L 334.5 251.1 L 315.7 252.6 L 297.2 253.4 L 279.5 253.6 L 262.3 253.4 L 245.5 252.6 L 229.2 251.2 L 213.4 249.1 L 198.4 246.1 L 184.7 242.3 L 172.6 237.6 L 162.0 232.2 L 152.7 226.5 L 144.1 220.6 L 135.6 214.6 L 126.6 208.6 L 117.0 202.5 L 107.0 196.1 L 97.6 189.5 L 89.9 182.6 L 85.4 175.5 L 85.0 168.6 L 89.4 162.1 L 98.5 156.6 L 111.5 152.1 L 127.0 148.8 L 143.8 146.6 L 160.5 145.3 L 176.3 144.4 L 191.0 143.7 L 204.8 142.8 L 218.2 141.8 L 232.1 140.5 L 246.8 139.4 L 262.6 138.5 L 279.5 138.1 L 296.9 138.4 L 314.4 139.3 L 331.6 140.7 L 348.4 142.4 L 364.8 144.3 L 380.8 146.2 L 396.4 148.3 L 411.5 150.6 L 425.5 153.2 L 437.5 156.4 L 446.8 160.1 L 452.7 164.4 L 454.7 168.9 L 453.1 173.6 L 448.8 178.2 L 442.8 182.6 Z" opacity="0.60"/>
+            <path d="M 441.8 175.0 L 436.1 179.6 L 430.9 184.2 L 426.9 189.1 L 424.2 194.6 L 422.3 200.6 L 420.0 207.4 L 416.3 214.7 L 409.9 222.0 L 400.2 229.1 L 387.1 235.3 L 371.0 240.4 L 352.8 244.0 L 333.5 246.3 L 314.3 247.3 L 295.7 247.4 L 278.1 246.9 L 261.3 245.9 L 245.0 244.6 L 229.2 242.9 L 213.6 240.7 L 198.5 237.8 L 184.1 234.2 L 170.9 229.7 L 159.0 224.6 L 148.6 218.9 L 139.2 212.9 L 130.4 206.8 L 121.7 200.7 L 112.8 194.5 L 103.9 188.2 L 95.5 181.7 L 88.8 175.0 L 84.8 168.2 L 84.7 161.7 L 89.1 155.6 L 98.1 150.3 L 110.9 146.2 L 126.5 143.2 L 143.4 141.4 L 160.3 140.3 L 176.3 139.8 L 190.9 139.3 L 204.5 138.5 L 217.7 137.3 L 231.1 135.7 L 245.4 134.0 L 261.1 132.4 L 278.1 131.3 L 295.9 130.9 L 313.9 131.3 L 331.7 132.3 L 348.7 134.0 L 364.9 135.9 L 380.2 138.1 L 394.8 140.4 L 408.7 142.9 L 421.5 145.6 L 432.7 148.8 L 441.8 152.4 L 447.9 156.5 L 450.6 160.9 L 450.1 165.6 L 446.8 170.3 L 441.8 175.0 Z" opacity="0.62"/>
+            <path d="M 440.4 167.7 L 435.6 172.6 L 430.9 177.7 L 426.9 183.0 L 423.9 188.7 L 421.6 195.1 L 419.0 202.1 L 415.0 209.5 L 408.6 217.0 L 399.0 224.2 L 385.8 230.5 L 369.7 235.5 L 351.3 239.0 L 331.9 240.9 L 312.4 241.5 L 293.8 240.9 L 276.3 239.7 L 259.9 238.1 L 244.2 236.2 L 228.8 234.2 L 213.5 231.9 L 198.2 229.1 L 183.2 225.7 L 169.0 221.6 L 155.9 216.7 L 144.2 211.2 L 134.0 205.3 L 124.9 199.1 L 116.4 192.9 L 108.4 186.7 L 100.8 180.4 L 93.8 174.1 L 88.3 167.7 L 85.2 161.3 L 85.6 155.2 L 90.0 149.5 L 98.6 144.6 L 111.1 140.8 L 126.2 138.1 L 142.9 136.4 L 159.6 135.5 L 175.6 135.1 L 190.2 134.7 L 203.7 133.9 L 216.5 132.5 L 229.6 130.7 L 243.7 128.4 L 259.3 126.3 L 276.3 124.5 L 294.4 123.4 L 312.9 123.2 L 331.0 123.9 L 348.2 125.4 L 364.2 127.5 L 378.8 129.9 L 392.3 132.5 L 404.9 135.2 L 416.4 138.1 L 426.7 141.3 L 435.4 144.8 L 441.7 148.8 L 445.4 153.2 L 446.1 157.9 L 444.2 162.8 L 440.4 167.7 Z" opacity="0.65"/>
+            <path d="M 438.7 160.8 L 435.0 166.1 L 430.9 171.5 L 427.0 177.2 L 423.6 183.3 L 420.7 189.8 L 417.4 196.9 L 413.0 204.3 L 406.2 211.8 L 396.4 218.9 L 383.3 225.2 L 367.2 230.1 L 348.9 233.3 L 329.4 235.0 L 310.0 235.0 L 291.4 234.0 L 274.2 232.1 L 258.1 229.9 L 243.0 227.5 L 228.1 225.2 L 213.0 222.8 L 197.7 220.2 L 182.2 217.0 L 167.0 213.2 L 152.7 208.6 L 139.9 203.4 L 128.7 197.6 L 119.2 191.5 L 111.1 185.3 L 104.1 179.1 L 97.9 172.9 L 92.5 166.8 L 88.5 160.8 L 86.6 154.8 L 87.5 149.2 L 92.0 143.9 L 100.2 139.4 L 111.9 135.8 L 126.3 133.2 L 142.3 131.6 L 158.6 130.8 L 174.3 130.4 L 188.8 129.9 L 202.2 129.0 L 214.9 127.5 L 227.8 125.3 L 241.7 122.7 L 257.1 119.9 L 274.2 117.5 L 292.5 115.8 L 311.3 115.2 L 329.7 115.6 L 347.0 117.0 L 362.7 119.1 L 376.7 121.7 L 389.1 124.6 L 400.3 127.6 L 410.5 130.7 L 419.8 134.0 L 428.0 137.5 L 434.6 141.4 L 439.1 145.8 L 441.3 150.5 L 441.0 155.6 L 438.7 160.8 Z" opacity="0.67"/>
+            <path d="M 436.5 154.1 L 434.2 159.8 L 430.8 165.7 L 427.0 171.7 L 423.2 178.1 L 419.5 184.7 L 415.3 191.8 L 410.0 199.1 L 402.8 206.4 L 392.7 213.3 L 379.7 219.3 L 363.7 223.9 L 345.6 227.0 L 326.4 228.3 L 307.1 228.0 L 288.8 226.5 L 271.8 224.1 L 256.1 221.4 L 241.4 218.7 L 226.9 216.1 L 212.2 213.6 L 196.8 211.0 L 180.9 208.1 L 164.9 204.6 L 149.6 200.5 L 135.7 195.5 L 123.7 190.0 L 113.9 184.0 L 106.1 177.8 L 100.0 171.7 L 95.3 165.7 L 91.7 159.8 L 89.4 154.1 L 88.7 148.7 L 90.4 143.5 L 94.9 138.8 L 102.5 134.6 L 113.3 131.2 L 126.7 128.7 L 141.7 127.0 L 157.3 126.1 L 172.5 125.5 L 186.8 124.8 L 200.1 123.7 L 212.8 122.0 L 225.6 119.6 L 239.4 116.6 L 254.7 113.4 L 271.8 110.5 L 290.1 108.4 L 309.1 107.3 L 327.7 107.4 L 345.0 108.6 L 360.4 110.8 L 373.7 113.7 L 385.1 116.8 L 395.1 120.1 L 404.0 123.5 L 412.3 126.9 L 420.0 130.4 L 426.8 134.4 L 432.2 138.7 L 435.7 143.5 L 437.1 148.7 L 436.5 154.1 Z" opacity="0.69"/>
+            <path d="M 433.9 147.9 L 433.0 153.9 L 430.5 160.1 L 426.9 166.5 L 422.6 173.0 L 417.9 179.8 L 412.7 186.7 L 406.4 193.7 L 398.4 200.7 L 388.0 207.1 L 374.9 212.7 L 359.2 217.1 L 341.5 219.9 L 322.7 220.9 L 303.9 220.4 L 285.8 218.5 L 269.2 215.8 L 253.8 212.7 L 239.5 209.7 L 225.4 206.8 L 210.9 204.3 L 195.6 201.8 L 179.5 199.1 L 162.9 196.0 L 146.8 192.2 L 131.9 187.6 L 119.2 182.3 L 109.0 176.6 L 101.5 170.6 L 96.4 164.5 L 93.1 158.7 L 91.3 153.1 L 90.8 147.9 L 91.5 142.9 L 93.9 138.2 L 98.5 133.9 L 105.6 130.1 L 115.3 126.8 L 127.4 124.3 L 141.2 122.5 L 155.7 121.2 L 170.3 120.3 L 184.3 119.4 L 197.5 118.1 L 210.2 116.1 L 223.1 113.5 L 236.9 110.2 L 252.2 106.8 L 269.2 103.5 L 287.5 101.0 L 306.4 99.5 L 325.0 99.4 L 342.2 100.5 L 357.4 102.7 L 370.1 105.8 L 380.6 109.2 L 389.4 112.8 L 397.2 116.4 L 404.5 120.0 L 411.7 123.6 L 418.5 127.6 L 424.7 131.9 L 429.7 136.8 L 432.8 142.1 L 433.9 147.9 Z" opacity="0.72"/>
+            <path d="M 430.8 141.9 L 431.4 148.3 L 429.7 154.8 L 426.4 161.5 L 421.7 168.1 L 416.0 174.8 L 409.6 181.5 L 402.1 188.2 L 393.2 194.6 L 382.4 200.5 L 369.3 205.6 L 354.0 209.6 L 336.8 212.0 L 318.6 212.9 L 300.3 212.1 L 282.7 210.1 L 266.4 207.2 L 251.4 203.9 L 237.3 200.6 L 223.6 197.6 L 209.3 195.0 L 194.2 192.6 L 177.9 190.1 L 161.0 187.3 L 144.3 183.9 L 128.8 179.7 L 115.5 174.8 L 105.0 169.3 L 97.8 163.5 L 93.5 157.7 L 91.6 152.1 L 91.5 146.8 L 92.6 141.9 L 94.8 137.4 L 98.0 133.2 L 102.7 129.3 L 109.2 125.8 L 117.7 122.7 L 128.4 120.0 L 140.7 117.9 L 154.0 116.3 L 167.8 114.9 L 181.4 113.6 L 194.5 111.9 L 207.4 109.7 L 220.5 106.9 L 234.3 103.6 L 249.6 100.0 L 266.4 96.5 L 284.5 93.8 L 303.3 92.1 L 321.7 91.7 L 338.8 92.7 L 353.6 95.0 L 365.8 98.1 L 375.6 101.8 L 383.4 105.6 L 390.2 109.5 L 396.7 113.3 L 403.3 117.1 L 410.2 121.1 L 417.1 125.5 L 423.3 130.5 L 428.0 136.0 L 430.8 141.9 Z" opacity="0.74"/>
+            <path d="M 427.3 136.3 L 429.2 142.9 L 428.5 149.7 L 425.3 156.5 L 420.2 163.2 L 413.7 169.8 L 406.0 176.2 L 397.3 182.3 L 387.4 188.1 L 376.0 193.4 L 362.9 197.9 L 348.0 201.4 L 331.6 203.5 L 314.2 204.1 L 296.6 203.3 L 279.5 201.3 L 263.6 198.3 L 248.8 195.0 L 235.0 191.6 L 221.4 188.5 L 207.4 185.8 L 192.5 183.5 L 176.3 181.2 L 159.3 178.7 L 142.3 175.6 L 126.3 171.8 L 112.7 167.3 L 102.1 162.1 L 95.0 156.6 L 91.4 151.0 L 90.7 145.7 L 92.1 140.8 L 94.8 136.3 L 98.3 132.2 L 102.4 128.4 L 107.2 124.9 L 113.1 121.6 L 120.4 118.5 L 129.5 115.7 L 140.3 113.3 L 152.3 111.2 L 165.1 109.3 L 178.2 107.4 L 191.3 105.4 L 204.4 103.0 L 217.7 100.0 L 231.7 96.6 L 246.9 93.0 L 263.6 89.5 L 281.4 86.7 L 299.9 84.9 L 318.0 84.4 L 334.7 85.3 L 349.2 87.5 L 361.0 90.7 L 370.2 94.6 L 377.4 98.7 L 383.4 102.8 L 389.1 106.8 L 395.3 110.8 L 402.2 115.0 L 409.6 119.5 L 416.8 124.5 L 423.0 130.1 L 427.3 136.3 Z" opacity="0.76"/>
+            <path d="M 423.3 130.8 L 426.4 137.6 L 426.5 144.6 L 423.7 151.5 L 418.2 158.2 L 410.8 164.6 L 401.9 170.6 L 392.0 176.2 L 381.2 181.2 L 369.3 185.8 L 356.2 189.6 L 341.7 192.6 L 326.0 194.3 L 309.5 194.8 L 292.7 194.0 L 276.3 192.1 L 260.8 189.3 L 246.2 186.0 L 232.5 182.7 L 219.1 179.6 L 205.3 176.9 L 190.6 174.6 L 174.7 172.4 L 157.8 170.2 L 140.8 167.4 L 124.8 164.0 L 110.9 159.9 L 100.3 155.1 L 93.5 149.9 L 90.4 144.7 L 90.6 139.6 L 93.2 135.0 L 97.3 130.8 L 102.0 127.1 L 106.8 123.8 L 111.7 120.5 L 117.1 117.4 L 123.3 114.3 L 130.9 111.3 L 140.0 108.5 L 150.7 105.8 L 162.5 103.3 L 175.1 100.9 L 188.0 98.5 L 201.3 95.8 L 214.9 92.7 L 229.1 89.4 L 244.4 85.9 L 260.8 82.6 L 278.2 79.8 L 296.1 78.0 L 313.8 77.5 L 330.1 78.3 L 344.2 80.5 L 355.8 83.7 L 364.6 87.7 L 371.3 92.0 L 376.8 96.3 L 382.0 100.6 L 387.8 104.8 L 394.6 109.1 L 402.3 113.7 L 410.3 118.8 L 417.7 124.5 L 423.3 130.8 Z" opacity="0.79"/>
+            <path d="M 418.9 125.6 L 422.9 132.4 L 423.8 139.5 L 421.2 146.4 L 415.6 153.1 L 407.4 159.2 L 397.5 164.7 L 386.5 169.6 L 374.7 174.0 L 362.3 177.7 L 349.2 180.9 L 335.2 183.2 L 320.3 184.7 L 304.8 185.1 L 288.9 184.3 L 273.2 182.6 L 258.0 180.0 L 243.7 177.0 L 230.1 173.8 L 216.7 170.8 L 203.1 168.2 L 188.6 165.9 L 173.1 163.9 L 156.6 161.8 L 140.0 159.3 L 124.2 156.3 L 110.4 152.5 L 99.9 148.2 L 93.2 143.4 L 90.5 138.5 L 91.4 133.8 L 94.9 129.4 L 100.0 125.6 L 105.6 122.2 L 111.1 119.1 L 116.1 116.2 L 121.0 113.1 L 126.2 110.0 L 132.4 106.7 L 140.0 103.4 L 149.2 100.2 L 160.0 97.1 L 172.0 94.1 L 184.9 91.2 L 198.3 88.3 L 212.2 85.2 L 226.7 82.0 L 241.9 78.7 L 258.0 75.7 L 275.0 73.1 L 292.3 71.5 L 309.3 71.0 L 325.1 71.8 L 338.9 73.9 L 350.2 77.1 L 358.9 81.1 L 365.4 85.6 L 370.6 90.1 L 375.5 94.6 L 381.0 99.0 L 387.7 103.5 L 395.6 108.2 L 404.1 113.4 L 412.2 119.2 L 418.9 125.6 Z" opacity="0.81"/>
+            <path d="M 414.1 120.5 L 418.8 127.3 L 420.3 134.3 L 418.0 141.2 L 412.2 147.6 L 403.5 153.4 L 392.7 158.4 L 380.7 162.7 L 368.2 166.3 L 355.3 169.3 L 342.2 171.7 L 328.7 173.5 L 314.7 174.6 L 300.1 174.9 L 285.2 174.3 L 270.2 172.9 L 255.5 170.7 L 241.3 168.0 L 227.7 165.1 L 214.3 162.3 L 200.8 159.8 L 186.7 157.6 L 171.6 155.6 L 155.8 153.7 L 139.8 151.4 L 124.5 148.7 L 111.1 145.4 L 100.7 141.4 L 94.2 137.0 L 91.8 132.5 L 93.1 128.1 L 97.2 124.0 L 102.9 120.5 L 109.2 117.3 L 115.1 114.4 L 120.2 111.6 L 124.7 108.7 L 129.1 105.4 L 134.0 101.9 L 140.2 98.1 L 148.1 94.3 L 157.9 90.6 L 169.3 87.0 L 182.0 83.7 L 195.6 80.5 L 209.8 77.5 L 224.5 74.5 L 239.7 71.5 L 255.5 68.9 L 271.8 66.7 L 288.4 65.3 L 304.7 64.9 L 319.9 65.7 L 333.4 67.8 L 344.5 71.0 L 353.2 74.9 L 359.8 79.4 L 365.0 84.1 L 369.8 88.8 L 375.2 93.4 L 381.7 98.1 L 389.6 102.9 L 398.2 108.2 L 406.8 114.1 L 414.1 120.5 Z" opacity="0.83"/>
+            <path d="M 409.0 115.4 L 414.2 122.1 L 416.0 129.0 L 413.9 135.7 L 408.1 141.8 L 399.0 147.3 L 387.7 151.8 L 375.0 155.4 L 361.7 158.3 L 348.5 160.5 L 335.5 162.2 L 322.5 163.5 L 309.2 164.3 L 295.7 164.5 L 281.7 164.1 L 267.4 163.1 L 253.2 161.3 L 239.1 159.1 L 225.5 156.6 L 212.1 154.1 L 198.7 151.7 L 184.9 149.6 L 170.4 147.7 L 155.4 145.8 L 140.2 143.7 L 125.7 141.3 L 112.9 138.3 L 102.9 134.7 L 96.6 130.8 L 94.2 126.6 L 95.6 122.5 L 99.9 118.8 L 106.0 115.4 L 112.6 112.4 L 118.8 109.6 L 123.9 106.9 L 128.1 103.9 L 131.8 100.5 L 135.7 96.7 L 140.7 92.5 L 147.5 88.1 L 156.3 83.8 L 167.1 79.7 L 179.6 76.0 L 193.3 72.6 L 207.7 69.6 L 222.5 66.9 L 237.7 64.4 L 253.2 62.2 L 268.9 60.4 L 284.6 59.3 L 300.1 59.2 L 314.7 60.1 L 327.7 62.1 L 338.8 65.2 L 347.7 69.1 L 354.5 73.6 L 360.0 78.4 L 364.9 83.2 L 370.2 88.0 L 376.6 92.8 L 384.2 97.8 L 392.8 103.2 L 401.5 109.0 L 409.0 115.4 Z" opacity="0.86"/>
+            <path d="M 403.8 110.3 L 409.0 116.8 L 411.0 123.4 L 409.1 129.8 L 403.3 135.7 L 394.1 140.6 L 382.4 144.7 L 369.2 147.7 L 355.6 149.9 L 342.2 151.4 L 329.2 152.5 L 316.7 153.2 L 304.2 153.8 L 291.6 154.0 L 278.5 153.8 L 265.0 153.2 L 251.1 152.0 L 237.3 150.3 L 223.6 148.3 L 210.1 146.1 L 196.8 143.9 L 183.3 141.9 L 169.6 140.0 L 155.5 138.2 L 141.3 136.3 L 127.8 134.0 L 115.8 131.4 L 106.4 128.2 L 100.2 124.6 L 97.8 120.8 L 99.0 117.1 L 103.1 113.5 L 109.1 110.3 L 115.8 107.4 L 122.0 104.6 L 127.2 101.8 L 131.1 98.8 L 134.3 95.2 L 137.4 91.1 L 141.5 86.5 L 147.3 81.7 L 155.3 76.8 L 165.5 72.3 L 177.8 68.2 L 191.5 64.7 L 206.0 61.7 L 221.0 59.3 L 236.1 57.2 L 251.1 55.6 L 266.2 54.4 L 281.1 53.7 L 295.7 53.8 L 309.5 54.8 L 322.2 56.8 L 333.3 59.8 L 342.4 63.6 L 349.7 68.1 L 355.6 72.9 L 360.8 77.8 L 366.2 82.8 L 372.4 87.7 L 379.8 92.9 L 388.0 98.3 L 396.4 104.0 L 403.8 110.3 Z" opacity="0.88"/>
+          </g>
+          <g fill="none" stroke="#a7c6ff" stroke-width=".55" opacity=".51">
+            <path d="M 418.0 278.0 L 423.6 271.1 L 428.6 263.8 L 432.8 256.2 L 436.3 248.4 L 439.0 240.3 L 441.1 232.0 L 442.5 223.6 L 443.4 215.2 L 443.8 206.9 L 443.9 198.6 L 443.5 190.5 L 442.8 182.6 L 441.8 175.0 L 440.4 167.7 L 438.7 160.8 L 436.5 154.1 L 433.9 147.9 L 430.8 141.9 L 427.3 136.3 L 423.3 130.8 L 418.9 125.6 L 414.1 120.5 L 409.0 115.4 L 403.8 110.3"/>
+            <path d="M 404.6 294.7 L 409.7 287.0 L 414.2 279.0 L 417.9 270.8 L 420.7 262.4 L 422.8 254.1 L 424.2 245.7 L 425.1 237.5 L 425.4 229.5 L 425.4 221.7 L 425.2 214.3 L 424.9 207.3 L 424.5 200.7 L 424.2 194.6 L 423.9 188.7 L 423.6 183.3 L 423.2 178.1 L 422.6 173.0 L 421.7 168.1 L 420.2 163.2 L 418.2 158.2 L 415.6 153.1 L 412.2 147.6 L 408.1 141.8 L 403.3 135.7"/>
+            <path d="M 355.3 299.9 L 360.6 292.3 L 366.2 284.9 L 372.1 277.8 L 378.1 271.0 L 384.0 264.5 L 389.7 258.4 L 395.0 252.6 L 399.7 247.1 L 403.8 241.8 L 406.9 236.8 L 409.0 231.8 L 410.0 226.9 L 409.9 222.0 L 408.6 217.0 L 406.2 211.8 L 402.8 206.4 L 398.4 200.7 L 393.2 194.6 L 387.4 188.1 L 381.2 181.2 L 374.7 174.0 L 368.2 166.3 L 361.7 158.3 L 355.6 149.9"/>
+            <path d="M 313.1 303.2 L 317.4 296.5 L 321.8 290.3 L 326.3 284.7 L 330.8 279.5 L 335.2 274.9 L 339.4 270.6 L 343.3 266.8 L 346.6 263.2 L 349.4 259.7 L 351.5 256.1 L 352.8 252.5 L 353.3 248.5 L 352.8 244.0 L 351.3 239.0 L 348.9 233.3 L 345.6 227.0 L 341.5 219.9 L 336.8 212.0 L 331.6 203.5 L 326.0 194.3 L 320.3 184.7 L 314.7 174.6 L 309.2 164.3 L 304.2 153.8"/>
+            <path d="M 264.0 310.4 L 266.8 306.1 L 269.6 302.0 L 272.2 297.9 L 274.5 293.9 L 276.6 289.9 L 278.3 285.6 L 279.6 281.2 L 280.5 276.4 L 281.0 271.4 L 280.9 265.9 L 280.4 260.0 L 279.5 253.6 L 278.1 246.9 L 276.3 239.7 L 274.2 232.1 L 271.8 224.1 L 269.2 215.8 L 266.4 207.2 L 263.6 198.3 L 260.8 189.3 L 258.0 180.0 L 255.5 170.7 L 253.2 161.3 L 251.1 152.0"/>
+            <path d="M 206.3 309.9 L 206.5 306.5 L 206.8 303.2 L 207.2 299.8 L 207.7 296.1 L 208.3 292.2 L 209.0 287.8 L 209.8 282.9 L 210.7 277.4 L 211.5 271.2 L 212.3 264.4 L 212.9 257.1 L 213.4 249.1 L 213.6 240.7 L 213.5 231.9 L 213.0 222.8 L 212.2 213.6 L 210.9 204.3 L 209.3 195.0 L 207.4 185.8 L 205.3 176.9 L 203.1 168.2 L 200.8 159.8 L 198.7 151.7 L 196.8 143.9"/>
+            <path d="M 160.7 303.8 L 162.5 299.1 L 164.3 294.2 L 166.1 289.1 L 167.6 283.9 L 168.8 278.4 L 169.6 272.7 L 169.8 266.6 L 169.4 260.3 L 168.4 253.7 L 166.7 246.8 L 164.6 239.7 L 162.0 232.2 L 159.0 224.6 L 155.9 216.7 L 152.7 208.6 L 149.6 200.5 L 146.8 192.2 L 144.3 183.9 L 142.3 175.6 L 140.8 167.4 L 140.0 159.3 L 139.8 151.4 L 140.2 143.7 L 141.3 136.3"/>
+            <path d="M 132.0 293.6 L 133.6 288.0 L 135.4 282.2 L 137.2 275.9 L 138.7 269.4 L 139.9 262.5 L 140.5 255.3 L 140.4 247.9 L 139.4 240.2 L 137.5 232.4 L 134.7 224.5 L 131.0 216.5 L 126.6 208.6 L 121.7 200.7 L 116.4 192.9 L 111.1 185.3 L 106.1 177.8 L 101.5 170.6 L 97.8 163.5 L 95.0 156.6 L 93.5 149.9 L 93.2 143.4 L 94.2 137.0 L 96.6 130.8 L 100.2 124.6"/>
+            <path d="M 134.2 278.0 L 131.2 271.1 L 127.7 263.8 L 123.7 256.2 L 119.4 248.4 L 114.8 240.3 L 110.2 232.0 L 105.7 223.6 L 101.5 215.2 L 97.7 206.9 L 94.4 198.6 L 91.8 190.5 L 89.9 182.6 L 88.8 175.0 L 88.3 167.7 L 88.5 160.8 L 89.4 154.1 L 90.8 147.9 L 92.6 141.9 L 94.8 136.3 L 97.3 130.8 L 100.0 125.6 L 102.9 120.5 L 106.0 115.4 L 109.1 110.3"/>
+            <path d="M 142.4 259.2 L 139.6 250.4 L 136.2 241.3 L 132.3 232.1 L 128.0 222.8 L 123.4 213.5 L 118.6 204.3 L 113.9 195.3 L 109.5 186.6 L 105.6 178.4 L 102.3 170.6 L 99.9 163.3 L 98.5 156.6 L 98.1 150.3 L 98.6 144.6 L 100.2 139.4 L 102.5 134.6 L 105.6 130.1 L 109.2 125.8 L 113.1 121.6 L 117.1 117.4 L 121.0 113.1 L 124.7 108.7 L 128.1 103.9 L 131.1 98.8"/>
+            <path d="M 154.6 234.2 L 153.8 224.6 L 153.5 215.3 L 153.5 206.3 L 154.0 197.6 L 154.8 189.5 L 155.7 181.8 L 156.9 174.6 L 158.0 167.9 L 159.0 161.7 L 159.8 155.9 L 160.3 150.4 L 160.5 145.3 L 160.3 140.3 L 159.6 135.5 L 158.6 130.8 L 157.3 126.1 L 155.7 121.2 L 154.0 116.3 L 152.3 111.2 L 150.7 105.8 L 149.2 100.2 L 148.1 94.3 L 147.5 88.1 L 147.3 81.7"/>
+            <path d="M 204.5 217.4 L 205.5 208.1 L 206.7 199.4 L 208.1 191.2 L 209.6 183.7 L 211.2 176.8 L 212.8 170.6 L 214.4 164.9 L 215.8 159.8 L 217.0 155.0 L 217.8 150.5 L 218.3 146.1 L 218.2 141.8 L 217.7 137.3 L 216.5 132.5 L 214.9 127.5 L 212.8 122.0 L 210.2 116.1 L 207.4 109.7 L 204.4 103.0 L 201.3 95.8 L 198.3 88.3 L 195.6 80.5 L 193.3 72.6 L 191.5 64.7"/>
+            <path d="M 264.0 217.6 L 266.8 210.4 L 269.6 203.5 L 272.2 196.8 L 274.5 190.2 L 276.6 183.8 L 278.3 177.4 L 279.6 171.0 L 280.5 164.5 L 281.0 158.1 L 280.9 151.5 L 280.4 144.9 L 279.5 138.1 L 278.1 131.3 L 276.3 124.5 L 274.2 117.5 L 271.8 110.5 L 269.2 103.5 L 266.4 96.5 L 263.6 89.5 L 260.8 82.6 L 258.0 75.7 L 255.5 68.9 L 253.2 62.2 L 251.1 55.6"/>
+            <path d="M 314.9 224.1 L 318.4 218.1 L 322.0 212.2 L 325.5 206.3 L 329.0 200.3 L 332.4 194.2 L 335.7 187.8 L 338.7 181.1 L 341.5 174.0 L 344.0 166.6 L 346.0 158.8 L 347.5 150.7 L 348.4 142.4 L 348.7 134.0 L 348.2 125.4 L 347.0 117.0 L 345.0 108.6 L 342.2 100.5 L 338.8 92.7 L 334.7 85.3 L 330.1 78.3 L 325.1 71.8 L 319.9 65.7 L 314.7 60.1 L 309.5 54.8"/>
+            <path d="M 361.4 238.1 L 369.2 231.4 L 377.1 224.6 L 384.6 217.6 L 391.7 210.6 L 398.1 203.4 L 403.5 196.1 L 407.9 188.7 L 411.2 181.2 L 413.1 173.6 L 413.8 166.0 L 413.2 158.3 L 411.5 150.6 L 408.7 142.9 L 404.9 135.2 L 400.3 127.6 L 395.1 120.1 L 389.4 112.8 L 383.4 105.6 L 377.4 98.7 L 371.3 92.0 L 365.4 85.6 L 359.8 79.4 L 354.5 73.6 L 349.7 68.1"/>
+            <path d="M 394.2 258.0 L 403.7 251.4 L 413.3 244.5 L 422.7 237.2 L 431.5 229.7 L 439.4 221.9 L 446.2 213.9 L 451.5 205.7 L 455.3 197.4 L 457.3 189.0 L 457.5 180.7 L 456.0 172.5 L 452.7 164.4 L 447.9 156.5 L 441.7 148.8 L 434.6 141.4 L 426.8 134.4 L 418.5 127.6 L 410.2 121.1 L 402.2 115.0 L 394.6 109.1 L 387.7 103.5 L 381.7 98.1 L 376.6 92.8 L 372.4 87.7"/>
+          </g>
+          <g fill="#d6e5ff" font-family="monospace" font-size="11" letter-spacing="2">
+            <text x="45" y="52">STRAIN FIELD</text>
+            <text x="475" y="352" text-anchor="end">4D CMR</text>
+          </g>
+        </svg>
+        <figcaption><span>Illustrative displacement field</span><span>Fig. 01</span></figcaption>
+      </figure>
+    </section>
 
-    <main>
-        <!-- Research Highlight Section -->
-        <section class="section">
-            <div class="container">
-                <div class="research-highlight">
-                    <h2 class="research-title">Current Research: Cardiac MRI Strain-Mapping Pipeline</h2>
-                    <p class="research-period">DUIRI Biomedical & Computer Engineering Research • Summer 2025</p>
-                    <p class="card-description">
-                        Led the complete refactoring of a MATLAB-based cardiac MRI strain-mapping pipeline into a high-performance Python framework. 
-                        Developed a Fourier-Feature–augmented multilayer perceptron (MLP) with sinusoidal positional encodings, leveraging PyTorch 
-                        on Apple-silicon GPUs. Achieved 50% code complexity reduction, real-time inference for 4D displacement fields, and superior 
-                        precision compared to conventional CNNs and spline methods. The modular design seamlessly incorporates mixed-signal circuit 
-                        analytics, demonstrating skills directly applicable to AI engineering and tech consulting roles.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="section">
-            <div class="container">
-                <h2 class="section-title">Professional Experience</h2>
-                <div class="grid grid-2">
-                    <div class="card">
-                        <h3 class="card-title">Lead Undergraduate Researcher</h3>
-                        <p class="card-subtitle">Purdue University • August 2023 – Present</p>
-                        <div class="card-description">
-                            <p>• Researching novel object detection techniques leveraging metadata storage to prevent re-classification, enhancing AI-driven autonomy for the visually impaired</p>
-                            <p>• Developing AI recognition systems for assistive canes with real-time communication using LIME xAI</p>
-                            <p>• Designed containerized AI Assistant trained on Rasa with intent-based NLU for daily task management</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3 class="card-title">Project Manager</h3>
-                        <p class="card-subtitle">Boilermaker Consulting Group • January 2024 – Present</p>
-                        <div class="card-description">
-                            <p>• Leading development of leasing optimization tool for 1,700-unit apartment portfolio using smart pricing algorithms and credit-based systems</p>
-                            <p>• Developed product fulfillment backend and optimized inventory using ML and historical data, reducing waste and improving stock accuracy</p>
-                            <p>• Conducted comprehensive strategy analysis addressing supply chain limitations with innovative solutions</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3 class="card-title">Project Intern</h3>
-                        <p class="card-subtitle">MARCo Health Tech LLC • July 2021 - June 2023</p>
-                        <div class="card-description">
-                            <p>• Applied AI skills in Python, Node.JS, and TensorFlow to programmatically classify unstructured conversational training data</p>
-                            <p>• Integrated cutting-edge NLP Transformer models, improving conversation effectiveness to 96% through optimized training parameters</p>
-                            <p>• Contributed to IEEE Xplore publication on NLP Model Integration for Mental Health Applications</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3 class="card-title">DUIRI Biomedical Engineering Researcher</h3>
-                        <p class="card-subtitle">Purdue University • Summer 2025</p>
-                        <div class="card-description">
-                            <p>• Refactored MATLAB cardiac MRI pipeline into Python framework with 50% complexity reduction</p>
-                            <p>• Implemented Fourier-Feature MLP with PyTorch GPU optimization for real-time 4D displacement inference</p>
-                            <p>• Achieved superior precision vs. CNNs and splines, with seamless mixed-signal circuit analytics integration</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title">Featured Projects</h2>
-                <div class="grid grid-3">
-                    <div class="card">
-                        <h3 class="card-title">AI-Powered Assistive Cane</h3>
-                        <div class="card-description">
-                            Machine learning cane with xAI communication system enabling real-time object recognition and navigation assistance for visually impaired individuals. Features LIME explainable AI for transparent decision-making.
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3 class="card-title">Enterprise Database System</h3>
-                        <div class="card-description">
-                            Comprehensive database solution for TGCS tracking application processes and IQ test results. Streamlined data management with improved efficiency and advanced reporting capabilities.
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3 class="card-title">Campus AI Solutions</h3>
-                        <div class="card-description">
-                            Developed Amazon Rekognition system for dining hall optimization and AI drone delivery platform for campus logistics. Integrated computer vision with practical applications.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Achievements Section -->
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title">Achievements & Recognition</h2>
-                <div class="grid grid-2">
-                    <div class="card">
-                        <h3 class="card-title">Publications & Patents</h3>
-                        <div class="achievement-item">
-                            <div class="achievement-icon"><i class="fas fa-book"></i></div>
-                            <div>
-                                <strong>IEEE Xplore Publication:</strong> Natural Language Processing Model Integration for Human Mental Health Companion Robot
-                            </div>
-                        </div>
-                        <div class="achievement-item">
-                            <div class="achievement-icon"><i class="fas fa-patent"></i></div>
-                            <div>
-                                <strong>US Federal Patent Co-Author:</strong> NLP Model Usage within Mental Health Robot
-                            </div>
-                        </div>
-                        <div class="achievement-item">
-                            <div class="achievement-icon"><i class="fas fa-file-alt"></i></div>
-                            <div>
-                                <strong>JAIR & arXiv:</strong> Peer-Reviewed Pre-Publication
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3 class="card-title">Awards & Grants</h3>
-                        <div class="achievement-item">
-                            <div class="achievement-icon"><i class="fas fa-trophy"></i></div>
-                            <div>
-                                <strong>NSF Phase 1 R&D Project Award</strong>
-                            </div>
-                        </div>
-                        <div class="achievement-item">
-                            <div class="achievement-icon"><i class="fas fa-medal"></i></div>
-                            <div>
-                                <strong>Presidential Volunteer Service Award - Gold Tier:</strong> 200+ community service hours
-                            </div>
-                        </div>
-                        <div class="achievement-item">
-                            <div class="achievement-icon"><i class="fas fa-scout"></i></div>
-                            <div>
-                                <strong>Eagle Scout - Silver Palm</strong> (May 2022)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title">Technical Skills</h2>
-                <div class="skills-container">
-                    <div class="skill-category">
-                        <h3><i class="fas fa-code"></i> Programming</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">C++</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">Node.js</span>
-                            <span class="skill-tag">MATLAB</span>
-                            <span class="skill-tag">HTML/CSS</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-brain"></i> AI/ML</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">TensorFlow</span>
-                            <span class="skill-tag">PyTorch</span>
-                            <span class="skill-tag">NLP Transformers</span>
-                            <span class="skill-tag">Computer Vision</span>
-                            <span class="skill-tag">Rasa</span>
-                            <span class="skill-tag">LIME xAI</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-cloud"></i> Cloud & Tools</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">AWS</span>
-                            <span class="skill-tag">Unity</span>
-                            <span class="skill-tag">Autodesk Fusion</span>
-                            <span class="skill-tag">KiCad</span>
-                            <span class="skill-tag">Arduino IDE</span>
-                            <span class="skill-tag">Git</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title">Education</h2>
-                <div class="card" style="max-width: 800px; margin: 0 auto;">
-                    <h3 class="card-title">Purdue University</h3>
-                    <p class="card-subtitle">B.S. Computer Engineering, Minor in Mathematics • May 2027</p>
-                    <div class="card-description">
-                        <p><strong>GPA:</strong> 3.5/4.0</p>
-                        <p><strong>Concentration:</strong> Artificial Intelligence</p>
-                        <p><strong>Location:</strong> West Lafayette, IN</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title">Let's Connect</h2>
-                <div class="contact-info">
-                    <a href="mailto:asabale@purdue.edu" class="contact-item">
-                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                        <div>asabale@purdue.edu</div>
-                    </a>
-                    <a href="https://linkedin.com/in/asabale" target="_blank" class="contact-item">
-                        <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
-                        <div>LinkedIn Profile</div>
-                    </a>
-                    <a href="tel:201-749-0877" class="contact-item">
-                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                        <div>(201) 749-0877</div>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Aarnav Sabale. All rights reserved.</p>
+    <section class="section" id="research" aria-labelledby="research-title">
+      <div class="section-head"><span class="index" aria-hidden="true">01</span><h2 id="research-title">Research</h2></div>
+      <div class="research-layout">
+        <div>
+          <h3>Accelerating cardiac MRI strain analysis</h3>
+          <p class="meta">Purdue DUIRI · Lead Research Investigator · Mar–Aug 2025</p>
+          <p class="description">Migrated a MATLAB workflow for 4D cardiac MRI to Python and PyTorch. Built a lightweight multilayer perceptron with Fourier feature embeddings to estimate displacement fields and accelerate strain analysis on a GPU.</p>
+          <a class="inline-link" href="https://docs.lib.purdue.edu/duri/58/">Read the Purdue research abstract <span aria-hidden="true">↗</span></a>
         </div>
-    </footer>
+        <dl class="metrics" aria-label="Research benchmarks">
+          <div><dt>Less processing time per file vs. MATLAB</dt><dd>&gt;60%</dd></div>
+          <div><dt>Less code complexity</dt><dd>~50%</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="section-head"><span class="index" aria-hidden="true">02</span><h2 id="projects-title">Selected projects</h2></div>
+      <div class="entries">
+        <article class="entry">
+          <div><h3>Oliver</h3><p class="meta">Personal software · Next.js, TypeScript, Supabase</p></div>
+          <p class="description">A personal planning app for tasks, calendars, notes, budgets, and trips. Its inbox turns pasted text into suggested tasks and events for review before adding them to the planner.</p>
+        </article>
+        <article class="entry">
+          <div><h3>PrintHive</h3><p class="meta">Purdue senior design · 3D printing workflows</p></div>
+          <p class="description">Contributed to student and operator workflows for a 3D print queue at Purdue’s Hive makerspace. The team prototype covers STL upload, 3D preview, queue tracking, and build plate clearance. The scheduling design accounts for estimated print time, staffing, and printer availability. The interface design considers contrast, keyboard focus, and status labels.</p>
+        </article>
+        <article class="entry">
+          <div><h3>Document Accessibility Checker</h3><p class="meta">Purdue software engineering · WCAG 2.1</p></div>
+          <div>
+            <p class="description">Designed and developed the frontend for uploading documents, connecting to the analysis service, and displaying findings. The team’s checker evaluates HTML, PDF, DOCX, and plain text against supported WCAG rules and suggests fixes. A later version also applies limited automatic repairs.</p>
+            <a class="inline-link" href="https://github.com/Osulliv6/ECE30861">View the team repository <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="entry">
+          <div><h3>Delta Chi Purdue website</h3><p class="meta">Web development · Chapter communications</p></div>
+          <div>
+            <p class="description">Built the chapter’s public website to help prospective members learn about Delta Chi at Purdue and find recruitment information and events.</p>
+            <a class="inline-link" href="https://deltachipurdue.org/">Visit the Delta Chi site <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      </div>
+      <details class="archive">
+        <summary>Earlier projects and experiments</summary>
+        <ul>
+          <li><strong>Assistive cane.</strong> Explored real-time object recognition and explainable AI with LIME for a navigation aid.</li>
+          <li><strong>Early AI assistant.</strong> Built a containerized prototype for daily task management using Rasa for intent recognition.</li>
+          <li><strong>Basketball tracking.</strong> Used YOLO to explore object tracking in basketball video.</li>
+          <li><strong>Ayodhya.</strong> Built a web demo to visualize land plots, with a Python utility to convert tabular data to JSON. <a href="https://github.com/Sabaleaarnav/ayodhya">View repository</a></li>
+          <li><strong>Other prototypes.</strong> An application tracking database, campus dining and logistics experiments, and an LLM-assisted optimization experiment.</li>
+        </ul>
+      </details>
+    </section>
+
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <div class="section-head"><span class="index" aria-hidden="true">03</span><h2 id="experience-title">Experience &amp; leadership</h2></div>
+      <div class="entries">
+        <article class="entry">
+          <div><h3>West Monroe Partners</h3><p class="meta">Technology &amp; Experience Intern · Jul–Aug 2026</p></div>
+          <ul>
+            <li>Worked with a government client to document platform requirements, workflows, and decisions in Confluence.</li>
+            <li>Built AI tooling for M&amp;A pricing and internal team workflows. Developed a pipeline to reduce hallucinations using verified sources and agent checks.</li>
+          </ul>
+        </article>
+        <article class="entry">
+          <div><h3>Boilermaker Consulting</h3><p class="meta">Project Manager · Since Jan 2024</p></div>
+          <ul>
+            <li>Led development of a leasing optimization tool for a 1,700-unit portfolio using pricing algorithms and a SQL-backed credit system.</li>
+            <li>Built a café fulfillment backend and used historical data and machine learning to improve inventory planning. Contributed to an AI and compliance project for Accenture.</li>
+          </ul>
+        </article>
+        <article class="entry">
+          <div><h3>Delta Chi, Purdue</h3><p class="meta">Chapter President · 2026</p></div>
+          <p class="description">Led an 80-member chapter, coordinated 20 committees, oversaw approximately $100,000 in chapter funds, and worked with an alumni network of about 1,500. Helped guide the chapter through its April 2026 chartering.</p>
+        </article>
+        <article class="entry">
+          <div><h3>MARCo Health Tech</h3><p class="meta">Project Intern · Jul 2021–Jun 2023</p></div>
+          <p class="description">Worked on natural language processing for a mental health companion robot. Used Python, Node.js, and TensorFlow to prepare conversational training data and integrate transformer models.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="education" aria-labelledby="education-title">
+      <div class="section-head"><span class="index" aria-hidden="true">04</span><h2 id="education-title">Education &amp; recognition</h2></div>
+      <div class="credentials">
+        <div>
+          <h3>Purdue University</h3>
+          <p class="meta">Elmore Family School of Electrical and Computer Engineering</p>
+          <p class="description">B.S. in Electrical Engineering, minor in Mathematics. Concentrations in artificial intelligence and software. Expected May 2027.</p>
+        </div>
+        <div>
+          <h3>Publications &amp; awards</h3>
+          <ul>
+            <li>Co-authored the Purdue research abstract on Fourier feature models for cardiac MRI strain analysis.</li>
+            <li>Contributed to IEEE Xplore publication and U.S. patent work on NLP for a mental health companion robot.</li>
+            <li>Contributed to an NSF Phase I R&amp;D project.</li>
+            <li>Eagle Scout, Silver Palm · 2022. President’s Volunteer Service Award, Gold.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Technical skills</h3>
+          <dl class="skills">
+            <dt>Programming</dt><dd>Python, TypeScript, JavaScript, SQL, C++, MATLAB</dd>
+            <dt>Applied AI</dt><dd>PyTorch, TensorFlow, computer vision, NLP, LLM workflows</dd>
+            <dt>Web and data</dt><dd>Next.js, Node.js, Supabase, PostgreSQL, Docker, Git</dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="contact" id="contact">
+    <div class="wrap">
+      <p class="kicker">Contact</p>
+      <h2>Get in touch</h2>
+      <div class="contact-links">
+        <a href="mailto:asabale@purdue.edu">asabale@purdue.edu</a>
+        <a href="https://www.linkedin.com/in/asabale/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/Sabaleaarnav">GitHub <span aria-hidden="true">↗</span></a>
+      </div>
+      <p class="meta footnote">Aarnav Sabale · Résumé &amp; selected work</p>
+    </div>
+  </footer>
+  <script>
+    const printButton = document.querySelector('.print-button');
+    const projectArchive = document.querySelector('.archive');
+    let archiveWasOpen;
+    window.addEventListener('beforeprint', () => {
+      archiveWasOpen ??= projectArchive.open;
+      projectArchive.open = true;
+    });
+    window.addEventListener('afterprint', () => {
+      projectArchive.open = archiveWasOpen;
+      archiveWasOpen = undefined;
+    });
+    printButton.hidden = false;
+    printButton.addEventListener('click', () => window.print());
+  </script>
 </body>
 </html>
