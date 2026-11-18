@@ -96,6 +96,8 @@
     .entry .meta { margin-top: .32rem; }
     .entry ul { margin: 0; color: var(--muted); }
     .entry li + li { margin-top: .22rem; }
+    .featured-project { padding: clamp(1.1rem, 3vw, 2.2rem); border-inline-start: 3px solid var(--accent); background: #edf1fb; }
+    .featured-project ul { margin-top: .75rem; }
     .archive { margin-top: 1.2rem; }
     .archive summary { min-height: 2.75rem; padding-block: .55rem; cursor: pointer; color: var(--accent); font-weight: 650; }
     .archive ul { margin-block: .35rem 0; color: var(--muted); }
@@ -185,7 +187,7 @@
       <div class="hero-copy">
         <p class="kicker">Purdue University · West Lafayette, IN</p>
         <h1 id="name">Aarnav <br>Sabale</h1>
-        <p class="intro">I study electrical engineering at Purdue and build software for biomedical research, accessibility, and everyday planning.</p>
+        <p class="intro">I study electrical engineering at Purdue and build software for chapter housing and operations, biomedical research, and accessibility.</p>
         <div class="actions">
           <a class="button" href="#projects">Explore projects <span aria-hidden="true">↓</span></a>
           <button class="print-button" type="button" hidden>Print résumé</button>
@@ -262,9 +264,12 @@
       <div class="section-head"><span class="index" aria-hidden="true">01</span><h2 id="research-title">Research</h2></div>
       <div class="research-layout">
         <div>
-          <h3>Accelerating cardiac MRI strain analysis</h3>
-          <p class="meta">Purdue DUIRI · Lead Research Investigator · Mar–Aug 2025</p>
+          <h3>Fourier-Feature MLP Toolkit for GPU-Accelerated Cardiac-MRI 4DCMR Strain Analysis</h3>
+          <p class="meta">Purdue DURI · Lead Research Investigator · Mar–Aug 2025</p>
           <p class="description">Migrated a MATLAB workflow for 4D cardiac MRI to Python and PyTorch. Built a lightweight multilayer perceptron with Fourier feature embeddings to estimate displacement fields and accelerate strain analysis on a GPU.</p>
+          <div>
+            <a class="inline-link" href="https://docs.lib.purdue.edu/cgi/viewcontent.cgi?article=1097&amp;context=duri">Download the Purdue paper (PDF) <span aria-hidden="true">↗</span></a>
+          </div>
           <a class="inline-link" href="https://docs.lib.purdue.edu/duri/58/">Read the Purdue research abstract <span aria-hidden="true">↗</span></a>
         </div>
         <dl class="metrics" aria-label="Research benchmarks">
@@ -273,6 +278,16 @@
         </dl>
       </div>
       <div class="entries research-more">
+        <article class="entry">
+          <div>
+            <h3>Analysis of Generative AI Large Language Models (LLMs) for Hyper-Specialized Transfer Learning in Medical Chatbots</h3>
+            <p class="meta">MARCo Health Tech · Co-authored preprint abstract</p>
+          </div>
+          <div>
+            <p class="description">Co-authored a study of how two general-purpose language models could adapt structured responses to patient messages using a small set of examples. The study scored responses for medical accuracy, toxicity, personalization, appropriateness, and grammar.</p>
+            <a class="inline-link" href="https://www.marcohealthtech.com/post/research-preprint-analysis-of-generative-ai-large-language-models-llms-for-hyper-specialized-transfer-learning-in-medical-chatbots">Read the MARCo preprint abstract <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
         <article class="entry">
           <div><h3>Weighted algorithms for DFS optimization</h3><p class="meta">Independent research · Mathematical optimization</p></div>
           <p class="description">Explored weighted algorithms for mathematical DFS optimization and used an LLM to help structure the approach.</p>
@@ -283,6 +298,20 @@
     <section class="section" id="projects" aria-labelledby="projects-title">
       <div class="section-head"><span class="index" aria-hidden="true">02</span><h2 id="projects-title">Selected projects</h2></div>
       <div class="entries">
+        <article class="entry featured-project">
+          <div>
+            <h3>Delta Chi Housing &amp; Chapter Operations</h3>
+            <p class="meta">Production web app · JavaScript, Node.js, Express, PostgreSQL</p>
+          </div>
+          <div>
+            <p class="description">I built and maintain the internal platform that my 80-member Purdue chapter uses for housing selection and day-to-day operations.</p>
+            <ul>
+              <li><strong>Housing selection.</strong> Members can form roommate partnerships and pick rooms in a points-based draft. Officers manage room inventory and assignments, with capacity checks enforced by the app.</li>
+              <li><strong>Chapter operations.</strong> Officers and committee chairs use role-based tools for projects, tasks, and treasury workflows covering dues forecasts, budget allocations, and expense approvals.</li>
+              <li><strong>Financial integrity.</strong> PostgreSQL transactions keep balances and audit records consistent when officers approve expenses or release funds.</li>
+            </ul>
+          </div>
+        </article>
         <article class="entry">
           <div><h3>Oliver</h3><p class="meta">Personal software · Next.js, TypeScript, Supabase</p></div>
           <p class="description">A personal planning app for tasks, calendars, notes, budgets, and trips. Its inbox turns pasted text into suggested tasks and events for review before adding them to the planner.</p>
@@ -352,8 +381,11 @@
           </ul>
         </article>
         <article class="entry">
-          <div><h3>Eagle Scout</h3><p class="meta">May 2022</p></div>
-          <p class="description">Earned the Silver Palm.</p>
+          <div><h3>Eagle Scout</h3><p class="meta">Troop 50 · Mahwah, NJ · May 2022</p></div>
+          <div>
+            <p class="description">Led a service project to build raised garden beds at the Mahwah Senior Activity Center so older adults could garden with less bending. The project helped launch the center’s garden club and raised $1,900 from 26 donors. Earned the Silver Palm.</p>
+            <a class="inline-link" href="https://www.gofundme.com/f/aarnavs-eagleproject">View the original Eagle Scout project fundraiser <span aria-hidden="true">↗</span></a>
+          </div>
         </article>
       </div>
     </section>
